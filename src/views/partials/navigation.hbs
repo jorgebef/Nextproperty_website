@@ -1,22 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <a class="navbar-brand" href="#">Control Panel</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+        <li {{#if data.active.create}}class="active"{{/if}}>
         <a class="nav-link" href="/properties/create">Create</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/properties/list">List</a>
+      <li {{#if data.active.list}}class="active"{{/if}}>
+          <a class="nav-link" href="/properties/list">List</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+      <li {{#if active.edit}}class="active"{{/if}}>
+        <a class="nav-link" href="#">Edit</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+      <li {{#if active.delete}}class="active"{{/if}}>
+        <a class="nav-link" href="#">Delete</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -25,3 +25,4 @@
     </form>
   </div>
 </nav>
+

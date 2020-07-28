@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const PropertySchema = new Schema({
+const PropertySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -15,4 +15,5 @@ const PropertySchema = new Schema({
 
 // Mongoose sets the collection name as the plural of the model name
 // so in this case the collection will be "properties"
-export default model('Property', PropertySchema);
+const Property = mongoose.model('Property', PropertySchema);
+export { Property };
