@@ -16,4 +16,5 @@ const PropertySchema = new mongoose.Schema({
 // Mongoose sets the collection name as the plural of the model name
 // so in this case the collection will be "properties"
 const Property = mongoose.model('Property', PropertySchema);
-export { Property };
+
+export default Property;

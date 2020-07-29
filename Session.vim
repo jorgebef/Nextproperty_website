@@ -7,9 +7,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/app.ts
+badd +26 src/app.ts
 badd +1 src/router.ts
-badd +6 src/models/property.ts
+badd +18 src/models/property.ts
+badd +12 src/views/props/edit.hbs
+badd +11 src/views/layouts/main.hbs
 argglobal
 %argdel
 edit src/router.ts
@@ -28,22 +30,23 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 argglobal
-let s:l = 3 - ((2 * winheight(0) + 34) / 69)
+let s:l = 7 - ((6 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
-normal! 0
+7
+normal! 013|
 wincmd w
 argglobal
 if bufexists("src/models/property.ts") | buffer src/models/property.ts | else | edit src/models/property.ts | endif
-let s:l = 6 - ((5 * winheight(0) + 34) / 69)
+let s:l = 19 - ((18 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-6
-normal! 0
+19
+normal! 015|
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 tabnext 1

@@ -23,8 +23,12 @@ class Application {
         this.app.engine(
             'hbs',
             exphbs({
+                // sets the folder where it searches for layouts
                 layoutsDir: path.join(this.app.get('views'), 'layouts'),
+                // sets the folder where it searches for partials
                 partialsDir: path.join(this.app.get('views'), 'partials'),
+                // sets the default template inside /views/layout that is
+                // rendered as the default page and is the base for all others
                 defaultLayout: 'main',
                 extname: '.hbs',
             })

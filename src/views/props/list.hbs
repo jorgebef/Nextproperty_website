@@ -1,10 +1,16 @@
-{{#if info.del}}
-<div class="alert alert-dismissible alert-success">
+{{#if data.action.del}}
+<div class="alert alert-dismissible alert-info">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Well done!</strong> You successfully deleted a property with id <a href="#" class="alert-link">{{id}}</a>
+  You successfully <strong>DELETED</strong> a property with id <a href="#" class="alert-link">{{data.action.id}}</a>
 </div>
 {{/if}}
 
+{{#if data.action.create}}
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  You successfully <strong>CREATED</strong> a property with id <a href="#" class="alert-link">{{data.action.id}}</a>
+</div>
+{{/if}}
 
 <div class="row">
 {{#each data.props}}

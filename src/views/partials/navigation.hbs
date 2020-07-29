@@ -6,16 +6,16 @@
 
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
-        <li {{#if data.active.create}}class="active"{{/if}}>
+        <li {{#if data.navbar.create}}class="active"{{/if}}>
         <a class="nav-link" href="/properties/create">Create</a>
       </li>
-      <li {{#if data.active.list}}class="active"{{/if}}>
+      <li {{#if data.navbar.list}}class="active"{{/if}}>
           <a class="nav-link" href="/properties/list">List</a>
       </li>
-      <li {{#if active.edit}}class="active"{{/if}}>
+      <li {{#if data.navbar.edit}}class="active"{{/if}}>
         <a class="nav-link" href="#">Edit</a>
       </li>
-      <li {{#if active.delete}}class="active"{{/if}}>
+      <li {{#if data.navbar.delete}}class="active"{{/if}}>
         <a class="nav-link" href="#">Delete</a>
       </li>
     </ul>
