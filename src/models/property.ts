@@ -1,15 +1,20 @@
 import mongoose from 'mongoose';
 
 const PropertySchema = new mongoose.Schema({
+    ref: {
+        type: String,
+        required: true,
+        uppercase: true,
+    },
     title: {
         type: String,
         required: true,
-        lowercase: true,
+        // lowercase: true,
     },
     description: {
         type: String,
         required: true,
-        lowercase: true,
+        // lowercase: true,
     },
 });
 

@@ -15,9 +15,9 @@ router.get('/', (req: Request, res: Response) => {
 // the handlebars templates for them to interact
 // with said data
 type DataObject = {
-    props: any; // No idea why it throws this error <--------------
-    navbar: any; // No idea why it throws this error <--------------
-    action: any;
+    props: any; // Property information to pass to the renderer
+    navbar: any; // Navbar section to highlight
+    action: any; // Action that we are perfonming
 };
 
 const data = {} as DataObject;
@@ -49,12 +49,15 @@ router
 // List properties
 router.route('/properties/list').get(async (req: Request, res: Response) => {
     const propertyList = await Property.find().lean();
+    // Clean the action property of the data object since we are only listing
     data.action = {};
+    // Assign the object with all the values collected by the db query above
+    // into the property of the data object
+    data.props = propertyList;
+    // Assign the corresponding object with values for the navbar to read
+    data.navbar = { list: true };
     // render 'props/list' passing the objects in 'propertyList'
     // through the collection 'properties'
-    // res.render('props/list', { properties: propertyList, active: { list:true } });
-    data.props = propertyList;
-    data.navbar = { list: true };
     res.render('props/list', { data });
 });
 
@@ -65,23 +68,37 @@ router.route('/properties/delete/:id').get(async (req: Request, res: Response) =
     // Delete the property selected with id
     await Property.findByIdAndDelete(id);
     // Then find all properties
-    const propertyList = await Property.find().lean();
+    const propList_new = await Property.find().lean();
     // Pass all properties to the data
-    data.props = propertyList;
+    data.props = propList_new;
     // Set the action to be delete and provide the id of deleted item
     data.action = { del: true, id };
+    data.navbar = { list: true };
     // Render the list page
     res.render('props/list', { data });
 });
 
 // Edit properties
-router.route('/properties/edit/:id').get(async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const property = await Property.findById(id).lean();
-    data.props = property;
-    // render 'props/list' passing the objects in 'propertyList'
-    // through the collection 'properties'
-    res.render('props/edit', { data });
-});
+router
+    .route('/properties/edit/:id')
+    .get(async (req: Request, res: Response) => {
+        const { id } = req.params;
+        const prop = await Property.findById(id).lean();
+        data.action = {};
+        data.navbar = { edit: true };
+        data.props = prop;
+        // render 'props/list' passing the objects in 'propertyList'
+        // through the collection 'properties'
+        res.render('props/edit', { data });
+    })
+    .post(async (req: Request, res: Response) => {
+        const { id } = req.params;
+        await Property.findByIdAndUpdate(id, req.body);
+        const propertyList = await Property.find().lean();
+        data.props = propertyList;
+        data.action = { edit: true, id };
+        data.navbar = { list: true };
+        res.render('props/list', { data });
+    });
 
 export default router;

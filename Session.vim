@@ -8,10 +8,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +26 src/app.ts
-badd +1 src/router.ts
-badd +18 src/models/property.ts
-badd +12 src/views/props/edit.hbs
-badd +11 src/views/layouts/main.hbs
+badd +97 src/router.ts
+badd +6 src/models/property.ts
+badd +32 src/views/props/list.hbs
+badd +4 src/views/partials/navigation.hbs
+badd +8 src/views/layouts/main.hbs
+badd +1 package.json
 argglobal
 %argdel
 edit src/router.ts
@@ -27,28 +29,27 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
-exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
+exe 'vert 1resize ' . ((&columns * 122 + 62) / 124)
+exe 'vert 2resize ' . ((&columns * 1 + 62) / 124)
 argglobal
-let s:l = 7 - ((6 * winheight(0) + 34) / 69)
+let s:l = 1 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-7
-normal! 013|
+1
+normal! 0
 wincmd w
 argglobal
-if bufexists("src/models/property.ts") | buffer src/models/property.ts | else | edit src/models/property.ts | endif
-let s:l = 19 - ((18 * winheight(0) + 34) / 69)
+if bufexists("src/views/partials/navigation.hbs") | buffer src/views/partials/navigation.hbs | else | edit src/views/partials/navigation.hbs | endif
+let s:l = 4 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-19
-normal! 015|
+4
+normal! 05|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
-exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
+exe 'vert 1resize ' . ((&columns * 122 + 62) / 124)
+exe 'vert 2resize ' . ((&columns * 1 + 62) / 124)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

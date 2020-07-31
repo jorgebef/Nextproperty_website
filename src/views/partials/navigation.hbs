@@ -1,28 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-  <a class="navbar-brand" href="#">Control Panel</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-        <li {{#if data.navbar.create}}class="active"{{/if}}>
-        <a class="nav-link" href="/properties/create">Create</a>
-      </li>
-      <li {{#if data.navbar.list}}class="active"{{/if}}>
-          <a class="nav-link" href="/properties/list">List</a>
-      </li>
-      <li {{#if data.navbar.edit}}class="active"{{/if}}>
-        <a class="nav-link" href="#">Edit</a>
-      </li>
-      <li {{#if data.navbar.delete}}class="active"{{/if}}>
-        <a class="nav-link" href="#">Delete</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-xl-2">
+    <a class="navbar-brand mr-5" href="#">NextProperty Panel</a>
+    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> --}}
+    {{!--     <span class="navbar-toggler-icon"></span> --}}
+    {{!-- </button> --}}
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li {{#if data.navbar.create}}class="active"{{/if}}>
+                <a class="nav-link" href="/properties/create">Create</a>
+            </li>
+            <li {{#if data.navbar.list}}class="active"{{/if}}>
+                <a class="nav-link" href="/properties/list">List</a>
+            </li>
+            <li {{#if data.navbar.edit}}class="active"{{/if}}>
+                <a class="nav-link" href="#">Edit</a>
+            </li>
+            <li {{#if data.navbar.delete}}class="active"{{/if}}>
+                <a class="nav-link" href="#">Delete</a>
+            </li>
+        </ul>
+        <form class="form-inline" action="/action_page.php">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary" type="submit">Search</button>
+        </form>
+    </div>
 </nav>
+
 
