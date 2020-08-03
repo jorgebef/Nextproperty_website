@@ -7,16 +7,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +26 src/app.ts
-badd +97 src/router.ts
-badd +6 src/models/property.ts
-badd +32 src/views/props/list.hbs
-badd +4 src/views/partials/navigation.hbs
-badd +8 src/views/layouts/main.hbs
-badd +1 package.json
+badd +16 src/controllers/user.controller.ts
+badd +1 src/controllers/property.controller.ts
+badd +31 src/routes/property.router.ts
+badd +1 src/views/auth/login.hbs
+badd +15 src/views/partials/navigation.hbs
 argglobal
 %argdel
-edit src/router.ts
+edit src/views/auth/login.hbs
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -29,8 +27,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 122 + 62) / 124)
-exe 'vert 2resize ' . ((&columns * 1 + 62) / 124)
+exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
+exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 argglobal
 let s:l = 1 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
@@ -41,15 +39,16 @@ normal! 0
 wincmd w
 argglobal
 if bufexists("src/views/partials/navigation.hbs") | buffer src/views/partials/navigation.hbs | else | edit src/views/partials/navigation.hbs | endif
-let s:l = 4 - ((0 * winheight(0) + 34) / 69)
+let s:l = 15 - ((14 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
-normal! 05|
+15
+normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 122 + 62) / 124)
-exe 'vert 2resize ' . ((&columns * 1 + 62) / 124)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
+exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

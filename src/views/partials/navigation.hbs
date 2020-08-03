@@ -1,20 +1,18 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-xl-2">
     <a class="navbar-brand mr-5" href="#">NextProperty Panel</a>
-    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> --}}
-    {{!--     <span class="navbar-toggler-icon"></span> --}}
-    {{!-- </button> --}}
+    {{#if data.session}}
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
-            <li {{#if data.navbar.create}}class="active"{{/if}}>
+            <li {{#if data.navActive.create}}class="active"{{/if}}>
                 <a class="nav-link" href="/properties/create">Create</a>
             </li>
-            <li {{#if data.navbar.list}}class="active"{{/if}}>
+            <li {{#if data.navActive.list}}class="active"{{/if}}>
                 <a class="nav-link" href="/properties/list">List</a>
             </li>
-            <li {{#if data.navbar.edit}}class="active"{{/if}}>
+            <li {{#if data.navActive.edit}}class="active"{{/if}}>
                 <a class="nav-link" href="#">Edit</a>
             </li>
-            <li {{#if data.navbar.delete}}class="active"{{/if}}>
+            <li {{#if data.navActive.delete}}class="active"{{/if}}>
                 <a class="nav-link" href="#">Delete</a>
             </li>
         </ul>
@@ -23,6 +21,7 @@
             <button class="btn btn-secondary" type="submit">Search</button>
         </form>
     </div>
+    {{/if}}
 </nav>
 
 
