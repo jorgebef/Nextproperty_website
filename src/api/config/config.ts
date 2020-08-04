@@ -14,3 +14,14 @@ export const db_options: ConnectionOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
+
+export const config = {
+    PORT: process.env.PORT || '3000',
+    MODE_ENV: process.env.MODE_ENV,
+    SESS_SECRET: process.env.SESS_SECRET || 'somesecretforthesession',
+    SESS_LIFETIME: 1000 * 60 * 60 * 24,
+    SESS_NAME: 'sid',
+    IN_PROD: false,
+};
+
+config.IN_PROD = config.MODE_ENV === 'production';

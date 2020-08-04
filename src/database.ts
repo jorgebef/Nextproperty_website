@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 // Import the params from config.ts file
-import * as conf from './config/config';
+import * as conf from './api/config/config';
 
 mongoose.connect(conf.db_conf.URI, conf.db_options);
 mongoose.connection.once('open', () => {

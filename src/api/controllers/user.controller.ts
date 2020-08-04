@@ -1,24 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import UserModel from '../models/user';
-
-// confirm whether the user is authenticated
-// const authenticated = passport.authenticate('jwt', { session: false });
-export const redirLogin = (req: Request, res: Response, next: NextFunction): void => {
-    if (req?.session?.userId) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
-};
-
-// Avoid relogging in by redirecting from login to list page if already logged in
-export const redirHome = (req: Request, res: Response, next: NextFunction): void => {
-    if (req?.session?.userId) {
-        res.redirect('/properties/list');
-    } else {
-        next();
-    }
-};
+import { SESS_NAME } from '../../app';
 
 // Login landing page =========================================================
 export const logInGet = async (req: Request, res: Response): Promise<void> => {
@@ -37,13 +19,27 @@ export const logInPost = async (req: Request, res: Response): Promise<unknown> =
     // Compare the password typed to the stored one running the method from the
     // Interface and Schema
     const isMatch = await user.comparePassword(req.body.password);
-
     if (isMatch) {
         // if to avoid the T2532 error for the request type
-        if (req.session) req.session.userId = user._id;
+        if (req.session) {
+            req.session.userId = user._id;
+            req.session.loggedUser = user.email;
+        }
         console.log(req.session);
         return res.redirect('properties/list');
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
+};
+
+// Logout post request controller =============================================
+export const logOut = async (req: Request, res: Response): Promise<void> => {
+    req.session?.destroy((err) => {
+        if (err) {
+            res.redirect('/api/properties/list');
+        }
+        res.clearCookie(SESS_NAME);
+        console.log(req.session);
+        res.redirect('/api/login');
+    });
 };

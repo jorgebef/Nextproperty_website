@@ -5,26 +5,21 @@ import morgan from 'morgan';
 import exphbs from 'express-handlebars';
 import path from 'path';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 // Import the routers for the properties and the login
-import propertyRouter from './routes/property.router';
-import loginRouter from './routes/auth.router';
+import propertyRouter from './api/routes/property.router';
+import loginRouter from './api/routes/user.router';
 // Import and run the database connection
 import './database';
+import { config } from './api/config/config';
 
 // Declare and create the app as an Express app
 const app = express();
-const {
-    PORT = process.env.PORT || '3000',
-    NODE_ENV = 'dev',
-    SESS_SECRET = 'somesecretforthesession',
-    SESS_LIFETIME = 1000 * 60 * 60 * 24,
-    SESS_NAME = 'sid',
-} = process.env;
-const IN_PROD = NODE_ENV === 'prod';
+dotenv.config();
 
 // Settings =========================
-app.set('port', PORT);
+app.set('port', config.PORT);
 app.set('views', path.join(__dirname, 'views'));
 app.engine(
     'hbs',
@@ -49,14 +44,14 @@ app.use(express.urlencoded({ extended: false }));
 // Cookies (session based)
 app.use(
     session({
-        name: SESS_NAME,
-        secret: SESS_SECRET,
+        name: config.SESS_NAME,
+        secret: config.SESS_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
-            maxAge: Number(SESS_LIFETIME), // time in miliseconds
+            maxAge: Number(config.SESS_LIFETIME), // time in miliseconds
             sameSite: true, // same as 'strict'
-            secure: IN_PROD,
+            secure: config.IN_PROD,
         },
     })
 );
@@ -67,6 +62,10 @@ app.use(propertyRouter);
 app.use(loginRouter);
 
 // Start ============================
-app.listen(PORT, () => {
-    console.log(`Server runing on port ${PORT}`);
+app.listen(config.PORT, () => {
+    console.log(
+        `
+        Server runing on port ${config.PORT} and the development mode is ${config.MODE_ENV}
+        `
+    );
 });
