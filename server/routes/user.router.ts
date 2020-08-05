@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as userControl from '../controllers/user.controller';
-import { redirHome, redirLogin } from '../controllers/auth.controller';
+import { redirHome, redirLogin } from '../middlewares/auth.middleware';
 
 const loginRouter = Router();
 

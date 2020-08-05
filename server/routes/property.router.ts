@@ -2,7 +2,7 @@
 import { Router } from 'express';
 // importing all functions form the property controller module as p_c
 import * as PropControl from '../controllers/property.controller';
-import { redirLogin } from '../controllers/auth.controller';
+import { redirLogin } from '../middlewares/auth.middleware';
 
 const propertyRouter = Router();
 

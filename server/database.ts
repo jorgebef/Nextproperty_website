@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 // Import the params from config.ts file
-import * as conf from './api/config/config';
+import Config from './config/config';
 
-mongoose.connect(conf.db_conf.URI, conf.db_options);
+mongoose.connect(Config.MONGODB_URI, Config.CONNECT_OPTIONS);
 mongoose.connection.once('open', () => {
-    console.log('>>>Database Connected');
+    console.log('**Database Connected**');
 });
 mongoose.connection.on('error', (err) => {
     console.log(err);

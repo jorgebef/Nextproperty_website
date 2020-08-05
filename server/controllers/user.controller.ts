@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import UserModel from '../models/user';
-import { SESS_NAME } from '../../app';
+import Config from '../config/config';
 
 // Login landing page =========================================================
 export const logInGet = async (req: Request, res: Response): Promise<void> => {
-    res.render('auth/login');
+    res.render('control_panel/login');
 };
 
 // Login post request controller ===============================================
@@ -26,7 +26,7 @@ export const logInPost = async (req: Request, res: Response): Promise<unknown> =
             req.session.loggedUser = user.email;
         }
         console.log(req.session);
-        return res.redirect('properties/list');
+        return res.redirect('/api/properties/list');
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
@@ -38,7 +38,7 @@ export const logOut = async (req: Request, res: Response): Promise<void> => {
         if (err) {
             res.redirect('/api/properties/list');
         }
-        res.clearCookie(SESS_NAME);
+        res.clearCookie(Config.SESS_NAME);
         console.log(req.session);
         res.redirect('/api/login');
     });
