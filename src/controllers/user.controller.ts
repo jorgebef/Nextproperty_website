@@ -4,7 +4,8 @@ import Config from '../config/config';
 
 // Login landing page =========================================================
 export const logInGet = async (req: Request, res: Response): Promise<void> => {
-    res.render('control_panel/login');
+    res.json('Login page!!!');
+    // res.render('control_panel/login');
 };
 
 // Login post request controller ===============================================

@@ -28,7 +28,8 @@ export const createPost = async (req: Request, res: Response): Promise<void> => 
     data.action = { create: true, id: newProperty._id };
     data.assignNavActive(req);
     data.assignSession(req);
-    res.render('control_panel/list', { data });
+    res.json(data);
+    // res.render('control_panel/list', { data });
 };
 
 // List properties route  =========================================================
@@ -40,7 +41,8 @@ export const listGet = async (req: Request, res: Response): Promise<void> => {
     data.props = propertyList;
     data.assignNavActive(req);
     data.assignSession(req);
-    res.render('control_panel/list', { data });
+    res.json(data);
+    // res.render('control_panel/list', { data });
 };
 
 // Delete property route  =========================================================
@@ -56,7 +58,8 @@ export const deleteGet = async (req: Request, res: Response): Promise<void> => {
     data.action = { del: true, id };
     data.assignNavActive(req);
     data.assignSession(req);
-    res.render('control_panel/list', { data });
+    res.json(data);
+    // res.render('control_panel/list', { data });
 };
 
 // Edit property route  =========================================================
@@ -67,7 +70,8 @@ export const editGet = async (req: Request, res: Response): Promise<void> => {
     data.assignNavActive(req);
     data.props = prop;
     data.assignSession(req);
-    res.render('control_panel/edit', { data });
+    res.json(data);
+    // res.render('control_panel/edit', { data });
 };
 export const editPost = async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
@@ -77,5 +81,6 @@ export const editPost = async (req: Request, res: Response): Promise<void> => {
     data.action = { edit: true, id };
     data.assignNavActive(req);
     data.assignSession(req);
-    res.render('control_panel/list', { data });
+    res.json(data);
+    // res.render('control_panel/list', { data });
 };
