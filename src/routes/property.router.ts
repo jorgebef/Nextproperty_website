@@ -13,6 +13,7 @@ propertyRouter
     .post(redirLogin, PropControl.createPost);
 
 // List properties
+// propertyRouter.route('/api/properties/list').get(redirLogin, PropControl.listGet);
 propertyRouter.route('/api/properties/list').get(redirLogin, PropControl.listGet);
 
 // Delete properties

@@ -4,6 +4,7 @@ import session from 'express-session';
 import morgan from 'morgan';
 import exphbs from 'express-handlebars';
 import path from 'path';
+import cors from 'cors';
 
 // Import the routers for the properties and the login
 import propertyRouter from './routes/property.router';
@@ -35,6 +36,7 @@ app.engine(
 app.set('view engine', '.hbs');
 
 // Middlewares ======================
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
