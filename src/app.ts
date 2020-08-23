@@ -12,6 +12,7 @@ import loginRouter from './routes/user.router';
 // Import and run the database connection
 import './database';
 import Config from './config/config';
+import cookieParser from 'cookie-parser';
 
 // Declare and create the app as an Express app
 const app = express();
@@ -36,10 +37,16 @@ app.engine(
 app.set('view engine', '.hbs');
 
 // Middlewares ======================
-app.use(cors());
+app.use(
+    cors({
+        origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000', '*'],
+        credentials: true,
+    })
+);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 // Cookies (session based)
 app.use(
     session({

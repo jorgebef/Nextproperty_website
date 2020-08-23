@@ -1,4 +1,7 @@
 import { Request, Response } from 'express';
+import fs from 'fs';
+import multer from 'multer';
+
 import PropertyModel from '../models/property';
 
 import { data } from '../middlewares/navbar.middleware';
@@ -12,22 +15,28 @@ export const createGet = async (req: Request, res: Response): Promise<void> => {
     data.action = {};
     // Assign the corresponding object with values for the navbar to read
     // data.navActive = { create: true };
-    data.assignNavActive(req);
+    // data.assignNavActive(req);
     // We assign the cookie value if there is one to data.session
-    data.assignSession(req);
+    // data.assignSession(req);
     // here we pass the data object as data (same as data:data)
     res.render('control_panel/create', { data });
 };
+
+// Create property route ========================================================
 export const createPost = async (req: Request, res: Response): Promise<void> => {
+    // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
+    // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
+    // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
+
     // Destructure the body into title and description params
-    const { ref, title, description } = req.body;
-    const newProperty = new PropertyModel({ ref, title, description });
+    const { ref, title, description, images } = req.body;
+    const newProperty = new PropertyModel({ ref, title, description, images });
     await newProperty.save();
     const propertyList = await PropertyModel.find().lean();
     data.props = propertyList;
-    data.action = { create: true, id: newProperty._id };
-    data.assignNavActive(req);
-    data.assignSession(req);
+    // data.action = { create: true, id: newProperty._id };
+    // data.assignNavActive(req);
+    // data.assignSession(req);
     res.json(data);
     // res.render('control_panel/list', { data });
 };
@@ -63,7 +72,7 @@ export const deleteGet = async (req: Request, res: Response): Promise<void> => {
 };
 
 // Edit property route  =========================================================
-export const editGet = async (req: Request, res: Response): Promise<void> => {
+export const propGet = async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     const prop = await PropertyModel.findById(id).lean();
     data.action = {};

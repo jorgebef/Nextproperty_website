@@ -28,27 +28,61 @@ export const logInPost = async (req: Request, res: Response): Promise<unknown> =
                 userId: user._id,
             },
             Config.SESS_SECRET,
-            { expiresIn: 86400000 } // 1 day in miliseconds
+            { expiresIn: 900000 } // 15 min in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
-        return res.status(200).json({
-            token: jwToken,
-            expiresIn: 86400000, // 1 day in miliseconds
-            msg: 'MESSAGEEEEEEE',
-        });
+        // return res.status(200).json({
+        //     token: jwToken,
+        //     expiresIn: 900000, // 15 min in miliseconds
+        // });
+        return res
+            .cookie('token', jwToken, {
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                secure: false, // set to true if your using https
+                httpOnly: true,
+            })
+            .status(200)
+            .json({ msg: 'successful login' });
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
 };
 
-// Logout post request controller =============================================
-export const logOut = async (req: Request, res: Response): Promise<void> => {
-    req.session?.destroy((err) => {
-        if (err) {
-            res.redirect('/api/properties/list');
-        }
-        res.clearCookie(Config.SESS_NAME);
-        console.log(req.session);
-        res.redirect('/api/login');
-    });
+export const authVerify = (req: Request, res: Response): void => {
+    const token = req.cookies.token || '';
+    console.log('this is the token: ' + token);
+    if (token) {
+        console.log('token found!!');
+        jwt.verify(token, Config.SESS_SECRET);
+        console.log('token successfully verified');
+        res.status(200).json('Token verified');
+    } else {
+        console.log('NOT VERIFIED!!!');
+        // res.redirect('/api/login');
+        res.status(403).json('Not logged in!!');
+    }
 };
+
+// Logout post request controller =============================================
+export const logOut = async (req: Request, res: Response): Promise<unknown> => {
+    return res
+        .cookie('token', null, {
+            expires: new Date(Date.now()),
+            secure: false, // set to true if your using https
+            httpOnly: true,
+        })
+        .status(200)
+        .json({ msg: 'successful login' });
+};
+
+// // Logout post request controller =============================================
+// export const logOut = async (req: Request, res: Response): Promise<void> => {
+//     req.session?.destroy((err) => {
+//         if (err) {
+//             res.redirect('/api/properties/list');
+//         }
+//         res.clearCookie(Config.SESS_NAME);
+//         console.log(req.session);
+//         res.redirect('/api/login');
+//     });
+// };

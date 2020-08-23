@@ -7,24 +7,22 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +39 src/app.ts
-badd +17 src/routes/property.router.ts
-badd +20 src/middlewares/navbar.middleware.ts
-badd +11 src/middlewares/auth.middleware.ts
-badd +38 src/controllers/user.controller.ts
-badd +8 src/routes/user.router.ts
-badd +0 src/views/control_panel/create.hbs
-badd +21 src/controllers/property.controller.ts
+badd +37 src/app.ts
+badd +12 src/middlewares/auth.middleware.ts
+badd +69 src/controllers/user.controller.ts
+badd +28 src/controllers/property.controller.ts
+badd +23 src/models/user.ts
+badd +28 src/models/property.ts
+badd +11 src/routes/user.router.ts
 argglobal
 %argdel
-edit src/routes/property.router.ts
+edit src/models/user.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
 set nosplitbelow
-set nosplitright
 wincmd t
 set winminheight=0
 set winheight=1
@@ -33,24 +31,24 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 argglobal
-let s:l = 12 - ((11 * winheight(0) + 34) / 69)
+let s:l = 23 - ((22 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-12
-normal! 038|
+23
+normal! 0
 wincmd w
 argglobal
-if bufexists("src/views/control_panel/create.hbs") | buffer src/views/control_panel/create.hbs | else | edit src/views/control_panel/create.hbs | endif
+if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/views/control_panel/create.hbs
+  silent file src/controllers/user.controller.ts
 endif
-let s:l = 10 - ((9 * winheight(0) + 34) / 69)
+let s:l = 69 - ((45 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 0
+69
+normal! 030|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)

@@ -19,18 +19,18 @@ const UserSchema: Schema = new Schema({
     },
 });
 
-UserSchema.pre<IUser>('save', async function (next) {
-    console.log(this);
-    // If the password hasn't been modified just jump to next
-    if (!this.isModified('password')) return next();
-
-    // Use bcrypt to encrypt the password, salt 10 times and store the hash
-    // instead of plain text
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(this.password, salt);
-    this.password = hash;
-    next();
-});
+// UserSchema.pre<IUser>('save', async function (next: any) {
+//     console.log(this);
+//     // If the password hasn't been modified just jump to next
+//     if (!this.isModified('password')) return next();
+//     // Use bcrypt to encrypt the password, salt 10 times and store the hash
+//     // instead of plain text
+//     const salt = await bcrypt.genSalt(10);
+//     const hash = await bcrypt.hash(this.password, salt);
+//     this.password = hash;
+//     next();
+//     return true;
+// });
 
 // Method to compare the password typed to the actual password
 UserSchema.methods.comparePassword = async function (inserted_password: string): Promise<boolean> {
