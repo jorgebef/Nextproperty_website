@@ -7,11 +7,11 @@ import { redirLogin } from '../middlewares/auth.middleware';
 const propertyRouter = Router();
 
 // Create properties
-propertyRouter.route('/api/properties/create').get(PropControl.createGet).post(redirLogin, PropControl.createPost);
+propertyRouter.route('/api/property/create').get(PropControl.createGet).post(redirLogin, PropControl.createPost);
 
 // List properties
 // propertyRouter.route('/api/properties/list').get(redirLogin, PropControl.listGet);
-propertyRouter.route('/api/properties/list').get(redirLogin, PropControl.listGet);
+propertyRouter.route('/api/property/list').get(redirLogin, PropControl.listGet);
 
 // Edit properties
 propertyRouter.route('/api/property/:id').get(redirLogin, PropControl.propGet);
@@ -19,5 +19,7 @@ propertyRouter.route('/api/property/edit/:id').put(redirLogin, PropControl.editP
 
 // Delete properties
 propertyRouter.route('/api/property/delete/:id').delete(redirLogin, PropControl.deleteGet);
+
+// Images for properties route =============================================================
 
 export default propertyRouter;

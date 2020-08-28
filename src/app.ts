@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import exphbs from 'express-handlebars';
 import path from 'path';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import fileUpload from 'express-fileupload';
 
 // Import the routers for the properties and the login
 import propertyRouter from './routes/property.router';
@@ -12,7 +14,6 @@ import loginRouter from './routes/user.router';
 // Import and run the database connection
 import './database';
 import Config from './config/config';
-import cookieParser from 'cookie-parser';
 
 // Declare and create the app as an Express app
 const app = express();
@@ -39,15 +40,19 @@ app.set('view engine', '.hbs');
 // Middlewares ======================
 app.use(
     cors({
-        origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000', '*'],
+        origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
         credentials: true,
     })
 );
 app.use(morgan('dev'));
+
+app.use(express.static('uploads'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(fileUpload());
+
 // Cookies (session based)
+app.use(cookieParser());
 app.use(
     session({
         name: Config.SESS_NAME,

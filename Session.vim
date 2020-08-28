@@ -7,16 +7,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +37 src/app.ts
+badd +9 src/app.ts
 badd +12 src/middlewares/auth.middleware.ts
-badd +69 src/controllers/user.controller.ts
-badd +28 src/controllers/property.controller.ts
-badd +23 src/models/user.ts
-badd +28 src/models/property.ts
-badd +11 src/routes/user.router.ts
+badd +58 src/controllers/user.controller.ts
+badd +1 src/controllers/property.controller.ts
+badd +33 src/models/property.ts
+badd +25 src/routes/property.router.ts
 argglobal
 %argdel
-edit src/models/user.ts
+edit src/controllers/property.controller.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -31,24 +30,24 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 argglobal
-let s:l = 23 - ((22 * winheight(0) + 34) / 69)
+let s:l = 35 - ((34 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-23
-normal! 0
+35
+normal! 042|
 wincmd w
 argglobal
-if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
+if bufexists("src/routes/property.router.ts") | buffer src/routes/property.router.ts | else | edit src/routes/property.router.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/controllers/user.controller.ts
+  silent file src/routes/property.router.ts
 endif
-let s:l = 69 - ((45 * winheight(0) + 34) / 69)
+let s:l = 25 - ((24 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-69
-normal! 030|
+25
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)

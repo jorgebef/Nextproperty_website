@@ -4,6 +4,7 @@ export interface IProp extends Document {
     ref: string;
     title: string;
     description: string;
+    created: string;
     images: Array<string>;
 }
 
@@ -18,15 +19,20 @@ const PropertySchema: Schema = new Schema({
         required: true,
         // lowercase: true,
     },
+    created_timestamp: {
+        type: Number,
+        required: true,
+        // lowercase: true,
+    },
     description: {
         type: String,
-        required: true,
+        required: false,
         // lowercase: true,
     },
     images: {
         type: Array,
         required: false,
-        lowercase: true,
+        // lowercase: true,
     },
 });
 

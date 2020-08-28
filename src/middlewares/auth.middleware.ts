@@ -7,9 +7,9 @@ import Config from '../config/config';
 export const redirLogin = (req: Request, res: Response, next: NextFunction): void => {
     // const token = req?.headers?.authorization?.split(' ')[1];
     const token = req.cookies.token || '';
-    console.log('this is the token: ' + token);
+    // console.log('this is the token: ' + token);
     if (token) {
-        console.log('token found!!');
+        // console.log('token found!!');
         jwt.verify(token, Config.SESS_SECRET);
         console.log('token successfully verified');
         next();

@@ -11,6 +11,7 @@ import { Request } from 'express';
 // with said data
 export type DataObject = {
     props: unknown; // Property information to pass to the renderer
+    images: Array<string>; // IMAGES FOR THE PROPERTY (test)
     navbar: unknown; // Navbar section to highlight
     assignNavActive(req: Request): void; // Method assign nav
     action: unknown; // Action that we are perfonming

@@ -9,7 +9,7 @@ export const logInGet = async (req: Request, res: Response): Promise<void> => {
 };
 
 // Login post request controller ===============================================
-export const logInPost = async (req: Request, res: Response): Promise<unknown> => {
+export const logInPost = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.email || !req.body.password) {
         console.log(req.body);
         return res.status(400).json({ msg: 'Please provide both an email and a password' });
@@ -50,9 +50,9 @@ export const logInPost = async (req: Request, res: Response): Promise<unknown> =
 
 export const authVerify = (req: Request, res: Response): void => {
     const token = req.cookies.token || '';
-    console.log('this is the token: ' + token);
+    // console.log('this is the token: ' + token);
     if (token) {
-        console.log('token found!!');
+        // console.log('token found!!');
         jwt.verify(token, Config.SESS_SECRET);
         console.log('token successfully verified');
         res.status(200).json('Token verified');
@@ -64,7 +64,7 @@ export const authVerify = (req: Request, res: Response): void => {
 };
 
 // Logout post request controller =============================================
-export const logOut = async (req: Request, res: Response): Promise<unknown> => {
+export const logOut = async (req: Request, res: Response): Promise<Response> => {
     return res
         .cookie('token', null, {
             expires: new Date(Date.now()),
