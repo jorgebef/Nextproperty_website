@@ -1,26 +1,67 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IProp extends Document {
+    created_timestamp: number;
+    edited_timestamp?: number;
     ref: string;
+    price: number;
+    new_build: boolean;
+    type: string;
+    town: string;
+    province: string;
+    lat?: number;
+    long?: number;
     title: string;
-    description: string;
-    created: string;
-    images: Array<string>;
+    description?: string;
+    images?: Array<string>;
 }
 
 const PropertySchema: Schema = new Schema({
+    created_timestamp: {
+        type: Number,
+        required: true,
+        // lowercase: true,
+    },
+    edited_timestamp: {
+        type: Number,
+        required: false,
+        // lowercase: true,
+    },
     ref: {
         type: String,
         required: true,
         uppercase: true,
     },
-    title: {
+    price: {
+        type: Number,
+        required: true,
+    },
+    new_build: {
+        type: Boolean,
+        required: true,
+    },
+    type: {
         type: String,
         required: true,
-        // lowercase: true,
     },
-    created_timestamp: {
+    town: {
+        type: String,
+        required: true,
+    },
+    province: {
+        type: String,
+        required: true,
+    },
+    lat: {
         type: Number,
+        required: false,
+    },
+    long: {
+        type: Number,
+        required: false,
+    },
+    title: {
+        type: String,
         required: true,
         // lowercase: true,
     },

@@ -15,14 +15,17 @@ export const createGet = async (req: Request, res: Response): Promise<Response> 
 // Create property route ========================================================
 export const createPost = async (req: Request, res: Response): Promise<Response> => {
     // Destructure the body into title and description params
-    const { ref, title, created_timestamp, description } = req.body;
-    const images = JSON.parse(req.body.images);
-    const newProperty = new PropertyModel({ ref, title, created_timestamp, description, images });
+    let images;
+    if (req.body.images != 'undefined') {
+        images = JSON.parse(req.body.images);
+    } else {
+        images = '';
+    }
+    const newProperty = new PropertyModel({ ...req.body, images: images });
     await newProperty.save();
-
     // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
     // create directory named as the reference to upload all the files
-    const imgDir = path.join(`uploads/${ref}`);
+    const imgDir = path.join(`uploads/${req.body.ref}`);
     if (!fs.existsSync(imgDir)) {
         fs.mkdir(imgDir, (err) => {
             if (err) {
@@ -32,13 +35,70 @@ export const createPost = async (req: Request, res: Response): Promise<Response>
         });
     }
     // Retrieve the files from the request
-    const imgs = (req as any).files.files;
-    console.log(imgs);
-    Object.keys(imgs).forEach((i) => {
-        console.log(imgs[i]);
-        imgs[i].mv(`uploads/${ref}/${imgs[i].name}`);
-    });
+    if (req.files) {
+        // Check whether multiple files or single file
+        if (Array.isArray(req.files.files)) {
+            const imgs = (req as any).files.files;
+            Object.keys(imgs).forEach((i) => {
+                console.log(imgs[i]);
+                imgs[i].mv(`uploads/${req.body.ref}/${imgs[i].name}`);
+            });
+        } else {
+            const img = (req as any).files.files;
+            img.mv(`uploads/${req.body.ref}/${img.name}`);
+        }
+    }
     // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
+    return res.status(200).json({ msg: 'ok' });
+};
+
+// Edit property route ================================================================
+export const editPost = async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    let images;
+    if (req.body.images != 'undefined') {
+        images = JSON.parse(req.body.images);
+    } else {
+        images = '';
+    }
+    // const oldProp = await PropertyModel.findById(id).lean();
+    const oldProp = await PropertyModel.findOne({ _id: id }).lean();
+    // await PropertyModel.findByIdAndUpdate(id, { ...req.body, images });
+    await PropertyModel.updateOne({ _id: id }, { ...req.body, images });
+    if (oldProp?.ref !== req.body.ref) {
+        const oldPath = `uploads/${oldProp?.ref}`;
+        const newPath = `uploads/${req.body.ref}`;
+        fs.mkdirSync(newPath);
+        fs.readdirSync(oldPath).map((f) => {
+            fs.renameSync(`${oldPath}/${f}`, `${newPath}/${f}`);
+        });
+        fs.rmdirSync(oldPath);
+    }
+    if (req.body.imgDel) {
+        console.log(req.body.imgDel);
+        const imgDelArray = JSON.parse(req.body.imgDel);
+        if (imgDelArray.length > 1) {
+            imgDelArray.map((i: string) => {
+                fs.unlinkSync(`uploads/${req.body.ref}/${i}`);
+            });
+        } else {
+            fs.unlinkSync(`uploads/${req.body.ref}/${imgDelArray}`);
+        }
+    }
+    // Retrieve the files from the request
+    if (req.files) {
+        // Check whether multiple files or single file
+        if (Array.isArray(req.files.files)) {
+            const imgs = (req as any).files.files;
+            Object.keys(imgs).forEach((i) => {
+                console.log(imgs[i]);
+                imgs[i].mv(`uploads/${req.body.ref}/${imgs[i].name}`);
+            });
+        } else {
+            const img = (req as any).files.files;
+            img.mv(`uploads/${req.body.ref}/${img.name}`);
+        }
+    }
     return res.status(200).json({ msg: 'ok' });
 };
 
@@ -81,11 +141,4 @@ export const propGet = async (req: Request, res: Response): Promise<Response> =>
     // });
     data.props = prop;
     return res.status(200).json(data);
-};
-
-// Edit property route ================================================================
-export const editPost = async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.params;
-    await PropertyModel.findByIdAndUpdate(id, req.body);
-    return res.status(200).json({ msg: 'ok' });
 };
