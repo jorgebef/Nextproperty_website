@@ -12,7 +12,7 @@ badd +12 src/middlewares/auth.middleware.ts
 badd +12 src/controllers/user.controller.ts
 badd +1 src/controllers/property.controller.ts
 badd +5 src/models/property.ts
-badd +15 src/routes/property.router.ts
+badd +17 src/routes/property.router.ts
 argglobal
 %argdel
 edit src/controllers/property.controller.ts
@@ -30,25 +30,26 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 argglobal
-let s:l = 65 - ((18 * winheight(0) + 34) / 69)
+let s:l = 1 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-65
-normal! 06|
+1
+normal! 0
 wincmd w
 argglobal
-if bufexists("src/routes/property.router.ts") | buffer src/routes/property.router.ts | else | edit src/routes/property.router.ts | endif
+if bufexists("src/models/property.ts") | buffer src/models/property.ts | else | edit src/models/property.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/routes/property.router.ts
+  silent file src/models/property.ts
 endif
-let s:l = 17 - ((16 * winheight(0) + 34) / 69)
+let s:l = 1 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-17
-normal! 038|
+1
+normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 124 + 124) / 249)
 exe 'vert 2resize ' . ((&columns * 124 + 124) / 249)
 tabnext 1
