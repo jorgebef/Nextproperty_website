@@ -84,7 +84,8 @@ app.use(propertyRouter);
 app.use(loginRouter);
 
 // Start ============================
-app.listen(Config.PORT, () => {
+// app.listen(Config.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Server on port ===> ${Config.PORT}
                 \rDevelopment mode ===> ${Config.MODE_ENV}\n`);
 });
