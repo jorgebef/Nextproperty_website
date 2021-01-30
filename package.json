@@ -13,7 +13,8 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "devDependencies": {
+    "devDependencies": {},
+    "dependencies": {
         "@types/bcrypt": "^3.0.0",
         "@types/cookie-parser": "^1.4.2",
         "@types/cors": "^2.8.7",
@@ -28,9 +29,7 @@
         "@typescript-eslint/eslint-plugin": "^3.10.1",
         "@typescript-eslint/parser": "^3.10.1",
         "eslint": "^7.9.0",
-        "nodemon": "^2.0.4"
-    },
-    "dependencies": {
+        "nodemon": "^2.0.4",
         "bcrypt": "^5.0.0",
         "cookie-parser": "^1.4.5",
         "cors": "^2.8.5",
