@@ -7,19 +7,17 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +91 src/app.ts
+badd +43 src/app.ts
 badd +1 src/database.ts
-badd +1 src/routes/property.router.ts
-badd +25 src/middlewares/auth.middleware.ts
-badd +4 src/controllers/user.controller.ts
+badd +10 src/routes/property.router.ts
+badd +12 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
 badd +10 src/config/config.ts
 badd +8 src/routes/user.router.ts
-badd +1 package.json
-badd +1 Procfile
+badd +608 node_modules/@types/node/globals.d.ts
 argglobal
 %argdel
-edit package.json
+edit src/app.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -35,15 +33,6 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 argglobal
-let s:l = 18 - ((17 * winheight(0) + 33) / 66)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-18
-normal! 06|
-wincmd w
-argglobal
-if bufexists("Procfile") | buffer Procfile | else | edit Procfile | endif
 let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
@@ -51,7 +40,15 @@ normal! zt
 1
 normal! 0
 wincmd w
-2wincmd w
+argglobal
+if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
+let s:l = 12 - ((11 * winheight(0) + 33) / 66)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+12
+normal! 014|
+wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
