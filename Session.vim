@@ -13,7 +13,7 @@ badd +1 src/routes/property.router.ts
 badd +25 src/middlewares/auth.middleware.ts
 badd +63 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
-badd +6 package.json
+badd +1 package.json
 argglobal
 %argdel
 edit src/controllers/user.controller.ts
@@ -40,13 +40,14 @@ normal! zt
 normal! 05|
 wincmd w
 argglobal
-if bufexists("src/models/user.ts") | buffer src/models/user.ts | else | edit src/models/user.ts | endif
+if bufexists("package.json") | buffer package.json | else | edit package.json | endif
 let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
+lcd ~/Documents/Github/Nextproperty-website/server
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
