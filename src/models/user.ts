@@ -3,7 +3,8 @@ import bcrypt from 'bcrypt';
 
 export interface IUser extends Document {
     email: string;
-    password: string;
+    password?: string;
+    // comparePassword: (inserted_password: string) => Promise<boolean>;
     comparePassword: (inserted_password: string) => Promise<boolean>;
 }
 
@@ -34,7 +35,7 @@ const UserSchema: Schema = new Schema({
 
 // Method to compare the password typed to the actual password
 UserSchema.methods.comparePassword = async function (inserted_password: string): Promise<boolean> {
-    return await bcrypt.compare(inserted_password, this.password);
+    return await bcrypt.compare(inserted_password, this.get('password'));
 };
 
 // Mongoose sets the collection name as the plural of the model name

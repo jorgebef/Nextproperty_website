@@ -46,13 +46,23 @@ app.use(
 );
 app.use(morgan('dev'));
 
+// app.use(express.static(path.join(__dirname + '/uploads')));
 app.use(express.static('uploads'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // Cookies (session based)
 app.use(cookieParser());
+
+declare module 'express-session' {
+    export interface SessionData {
+        userId: { [key: string]: any };
+        loggedUser: { [key: string]: any };
+    }
+}
+
 app.use(
     session({
         name: Config.SESS_NAME,
