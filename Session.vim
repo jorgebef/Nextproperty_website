@@ -13,6 +13,7 @@ badd +1 src/routes/property.router.ts
 badd +25 src/middlewares/auth.middleware.ts
 badd +63 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
+badd +9 .env
 argglobal
 %argdel
 edit src/app.ts
@@ -28,14 +29,15 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
-let s:l = 75 - ((38 * winheight(0) + 33) / 66)
+let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-75
-normal! 027|
+1
+normal! 0
 wincmd w
 argglobal
 if bufexists("src/models/user.ts") | buffer src/models/user.ts | else | edit src/models/user.ts | endif
@@ -46,7 +48,8 @@ normal! zt
 38
 normal! 0
 wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
