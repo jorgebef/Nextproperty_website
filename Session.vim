@@ -10,12 +10,10 @@ set shortmess=aoO
 badd +62 src/app.ts
 badd +1 src/database.ts
 badd +1 src/routes/property.router.ts
-badd +1 src/models/property.ts
-badd +26 src/middlewares/navbar.middleware.ts
 badd +25 src/middlewares/auth.middleware.ts
-badd +25 src/controllers/user.controller.ts
+badd +63 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
-badd +11 .gitignore
+badd +6 package.json
 argglobal
 %argdel
 edit src/controllers/user.controller.ts
@@ -34,12 +32,12 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 argglobal
-let s:l = 25 - ((24 * winheight(0) + 33) / 66)
+let s:l = 63 - ((40 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
-normal! 027|
+63
+normal! 05|
 wincmd w
 argglobal
 if bufexists("src/models/user.ts") | buffer src/models/user.ts | else | edit src/models/user.ts | endif
