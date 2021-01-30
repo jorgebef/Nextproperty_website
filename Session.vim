@@ -11,11 +11,11 @@ badd +91 src/app.ts
 badd +1 src/database.ts
 badd +1 src/routes/property.router.ts
 badd +25 src/middlewares/auth.middleware.ts
-badd +1 src/controllers/user.controller.ts
+badd +4 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
 badd +10 src/config/config.ts
 badd +8 src/routes/user.router.ts
-badd +1 Procfile
+badd +1 package.json
 argglobal
 %argdel
 edit src/controllers/user.controller.ts
