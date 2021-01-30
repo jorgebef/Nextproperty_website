@@ -15,7 +15,7 @@ badd +4 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
 badd +10 src/config/config.ts
 badd +8 src/routes/user.router.ts
-badd +1 package.json
+badd +31 package.json
 argglobal
 %argdel
 edit src/controllers/user.controller.ts
