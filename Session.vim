@@ -7,17 +7,18 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +88 src/app.ts
+badd +91 src/app.ts
 badd +1 src/database.ts
 badd +1 src/routes/property.router.ts
 badd +25 src/middlewares/auth.middleware.ts
-badd +63 src/controllers/user.controller.ts
+badd +1 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
-badd +2 .gitignore
 badd +10 src/config/config.ts
+badd +8 src/routes/user.router.ts
+badd +1 Procfile
 argglobal
 %argdel
-edit src/config/config.ts
+edit src/controllers/user.controller.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -30,7 +31,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
 let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
@@ -48,7 +50,8 @@ normal! zt
 38
 normal! 0
 wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
