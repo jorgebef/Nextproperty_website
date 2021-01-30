@@ -71,7 +71,8 @@ app.use(
         saveUninitialized: false,
         cookie: {
             maxAge: Number(Config.SESS_LIFETIME), // time in miliseconds
-            sameSite: true, // same as 'strict'
+            // sameSite: true, // same as 'strict'
+            sameSite: false, // same as 'strict'
             secure: Config.IN_PROD,
         },
     })

@@ -13,10 +13,9 @@ badd +1 src/routes/property.router.ts
 badd +25 src/middlewares/auth.middleware.ts
 badd +63 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
-badd +1 package.json
 argglobal
 %argdel
-edit src/controllers/user.controller.ts
+edit src/app.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -32,15 +31,6 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 argglobal
-let s:l = 63 - ((40 * winheight(0) + 33) / 66)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-63
-normal! 05|
-wincmd w
-argglobal
-if bufexists("package.json") | buffer package.json | else | edit package.json | endif
 let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
@@ -49,7 +39,15 @@ normal! zt
 normal! 0
 lcd ~/Documents/Github/Nextproperty-website/server
 wincmd w
-2wincmd w
+argglobal
+if bufexists("~/Documents/Github/Nextproperty-website/server/src/models/user.ts") | buffer ~/Documents/Github/Nextproperty-website/server/src/models/user.ts | else | edit ~/Documents/Github/Nextproperty-website/server/src/models/user.ts | endif
+let s:l = 38 - ((37 * winheight(0) + 33) / 66)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+38
+normal! 0
+wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
