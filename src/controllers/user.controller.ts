@@ -15,9 +15,9 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         return res.status(400).json({ msg: 'Please provide both an email and a password' });
     }
     const user = await UserModel.findOne({ email: req.body.email });
-    if (!user) {
-        return res.status(400).json({ msg: 'Email not found' });
-    }
+    // if (!user) {
+    //     return res.status(400).json({ msg: 'Email not found' });
+    // }
     // Compare the password typed to the stored one running the method from the
     // Interface and Schema
     const isMatch = await user.comparePassword(req.body.password);
@@ -38,7 +38,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         return res
             .cookie('token', jwToken, {
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-                secure: false, // set to true if your using https
+                secure: true, // set to true if your using https
                 httpOnly: true,
             })
             .status(200)
@@ -59,7 +59,7 @@ export const authVerify = (req: Request, res: Response): void => {
     } else {
         console.log('NOT VERIFIED!!!');
         // res.redirect('/api/login');
-        res.status(403).json('Not logged in!!');
+        res.status(400).json('Not logged in!!');
     }
 };
 
@@ -72,7 +72,7 @@ export const logOut = async (req: Request, res: Response): Promise<Response> => 
             httpOnly: true,
         })
         .status(200)
-        .json({ msg: 'successful login' });
+        .json({ msg: 'successfully logged out' });
 };
 
 // // Logout post request controller =============================================
