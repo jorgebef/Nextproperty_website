@@ -1,1 +1,1 @@
-web: tsc && npm start
+web: npx ts-node src/app.ts
