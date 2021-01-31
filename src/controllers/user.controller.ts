@@ -43,7 +43,8 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         })
             .status(200)
             .json({ msg: 'successful login' });
-        return res.send(req.signedCookies);
+        res.send(req.signedCookies);
+        return res;
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
