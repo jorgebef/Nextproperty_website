@@ -9,8 +9,7 @@ export const logInGet = async (req: Request, res: Response): Promise<void> => {
 };
 
 // Login post request controller ===============================================
-// export const logInPost = async (req: Request, res: Response): Promise<Response> => {
-export const logInPost = async (req: Request, res: Response): Promise<void> => {
+export const logInPost = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.email || !req.body.password) {
         console.log(req.body);
         return res.status(400).json({ msg: 'Please provide both an email and a password' });
@@ -36,16 +35,17 @@ export const logInPost = async (req: Request, res: Response): Promise<void> => {
         //     token: jwToken,
         //     expiresIn: 900000, // 15 min in miliseconds
         // });
-        res.cookie('token', jwToken, {
-            expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-            // signed: true,
-            secure: false, // set to true if your using https
-            httpOnly: false,
-        })
+        return res
+            .cookie('token', jwToken, {
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                // signed: true,
+                secure: false, // set to true if your using https
+                httpOnly: false,
+            })
             .header('cookie', jwToken)
             .status(200)
             .json({ msg: 'successful login' })
-            .send('ok');
+            .send('successful login');
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
