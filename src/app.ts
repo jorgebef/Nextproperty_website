@@ -40,10 +40,19 @@ app.set('view engine', '.hbs');
 // Middlewares ======================
 app.use(
     cors({
-        // origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
-        allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'X-Access-Token', 'Authorization'],
+        origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
+        allowedHeaders: [
+            'Access-Control-Allow-Credentials',
+            'Access-Control-Allow-Origin',
+            'Origin',
+            'X-Requested-With',
+            'Content-Type',
+            'Accept',
+            'X-Access-Token',
+            'Authorization',
+        ],
         methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-        origin: true,
+        origin: 'localhost:3000',
         credentials: true,
     })
 );
