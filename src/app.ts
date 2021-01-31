@@ -40,7 +40,7 @@ app.set('view engine', '.hbs');
 // Middlewares ======================
 app.use(
     cors({
-        origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
+        // origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
         allowedHeaders: [
             'Access-Control-Allow-Credentials',
             'Access-Control-Allow-Origin',
