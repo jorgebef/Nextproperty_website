@@ -7,11 +7,12 @@ import { redirLogin } from '../middlewares/auth.middleware';
 const propertyRouter = Router();
 
 // Create properties
-propertyRouter.route('/api/property/create').get(PropControl.createGet).post(redirLogin, PropControl.createPost);
+// propertyRouter.route('/api/property/create').get(PropControl.createGet).post(redirLogin, PropControl.createPost);
+propertyRouter.route('/api/property/create').get(PropControl.createGet).post(PropControl.createPost);
 
 // List properties
-// propertyRouter.route('/api/properties/list').get(redirLogin, PropControl.listGet);
-propertyRouter.route('/api/property/list').get(redirLogin, PropControl.listGet);
+// propertyRouter.route('/api/property/list').get(redirLogin, PropControl.listGet);
+propertyRouter.route('/api/property/list').get(PropControl.listGet);
 
 // Edit properties
 propertyRouter.route('/api/property/:id').get(redirLogin, PropControl.propGet);
