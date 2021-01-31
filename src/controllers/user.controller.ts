@@ -35,16 +35,17 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         //     token: jwToken,
         //     expiresIn: 900000, // 15 min in miliseconds
         // });
-        res.cookie('token', jwToken, {
-            expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-            signed: true,
-            // secure: true, // set to true if your using https
-            httpOnly: true,
-        })
+        return res
+            .cookie('token', jwToken, {
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                signed: true,
+                // secure: true, // set to true if your using https
+                httpOnly: true,
+            })
             .status(200)
             .json({ msg: 'successful login' });
-        res.send(req.signedCookies);
-        return res;
+        // res.send(req.signedCookies);
+        // return res;
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
