@@ -40,11 +40,12 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
                 // signed: true,
                 secure: false, // set to true if your using https
-                httpOnly: true,
+                httpOnly: false,
             })
             .header('cookie', jwToken)
             .status(200)
-            .json({ msg: 'successful login' });
+            .json({ msg: 'successful login' })
+            .send('ok');
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
