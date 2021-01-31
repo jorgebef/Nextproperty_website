@@ -1,9 +1,9 @@
 // Main application control
 import express from 'express';
-import session from 'express-session';
+// import session from 'express-session';
 import morgan from 'morgan';
-import exphbs from 'express-handlebars';
-import path from 'path';
+// import exphbs from 'express-handlebars';
+// import path from 'path';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
@@ -21,21 +21,21 @@ const app = express();
 // Settings =========================
 Config.isProd();
 app.set('port', Config.PORT);
-app.set('views', path.join(__dirname, 'views'));
-app.engine(
-    'hbs',
-    exphbs({
-        // sets the folder where it searches for layouts
-        layoutsDir: path.join(app.get('views'), 'layouts'),
-        // sets the folder where it searches for partials
-        partialsDir: path.join(app.get('views'), 'partials'),
-        // sets the default template inside /views/layout that is
-        // rendered as the default page and is the base for all others
-        defaultLayout: 'main',
-        extname: '.hbs',
-    })
-);
-app.set('view engine', '.hbs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.engine(
+//     'hbs',
+//     exphbs({
+//         // sets the folder where it searches for layouts
+//         layoutsDir: path.join(app.get('views'), 'layouts'),
+//         // sets the folder where it searches for partials
+//         partialsDir: path.join(app.get('views'), 'partials'),
+//         // sets the default template inside /views/layout that is
+//         // rendered as the default page and is the base for all others
+//         defaultLayout: 'main',
+//         extname: '.hbs',
+//     })
+// );
+// app.set('view engine', '.hbs');
 
 // Middlewares ======================
 app.use(
