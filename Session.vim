@@ -13,12 +13,12 @@ badd +15 src/routes/property.router.ts
 badd +41 src/controllers/user.controller.ts
 badd +4 src/models/user.ts
 badd +8 src/routes/user.router.ts
-badd +20 package.json
+badd +11 package.json
 badd +1 Procfile
-badd +0 .gitignore
+badd +1 .gitignore
 argglobal
 %argdel
-edit .gitignore
+edit src/app.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -40,10 +40,9 @@ exe s:l
 normal! zt
 1
 normal! 0
-lcd ~/Documents/Github/Nextproperty-website/server
 wincmd w
 argglobal
-if bufexists("~/Documents/Github/Nextproperty-website/server/src/routes/user.router.ts") | buffer ~/Documents/Github/Nextproperty-website/server/src/routes/user.router.ts | else | edit ~/Documents/Github/Nextproperty-website/server/src/routes/user.router.ts | endif
+if bufexists("src/routes/user.router.ts") | buffer src/routes/user.router.ts | else | edit src/routes/user.router.ts | endif
 let s:l = 11 - ((10 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l

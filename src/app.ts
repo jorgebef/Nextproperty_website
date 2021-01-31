@@ -52,7 +52,8 @@ app.use(
             'Authorization',
         ],
         // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-        origin: 'http://localhost:3000',
+        // origin: 'http://localhost:3000',
+        origin: 'https://nextproperty-client.herokuapp.com/',
         credentials: true,
     })
 );
