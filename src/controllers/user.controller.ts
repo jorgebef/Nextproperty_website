@@ -42,6 +42,9 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 // secure: true, // set to true if your using https
                 httpOnly: true,
             })
+            .cookie('test', 'laksjdlfkajsdlfkjalsdfkj', {
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+            })
             .status(200)
             .json({ msg: 'successful login' });
     } else {
