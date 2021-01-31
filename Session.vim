@@ -10,7 +10,7 @@ set shortmess=aoO
 badd +58 src/app.ts
 badd +1 src/database.ts
 badd +10 src/routes/property.router.ts
-badd +30 src/controllers/user.controller.ts
+badd +45 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
 badd +8 src/routes/user.router.ts
 argglobal
@@ -40,14 +40,13 @@ normal! 022|
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
-let s:l = 30 - ((29 * winheight(0) + 33) / 66)
+let s:l = 38 - ((19 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-30
-normal! 027|
+38
+normal! 015|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif

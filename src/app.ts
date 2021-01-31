@@ -41,6 +41,8 @@ app.set('view engine', '.hbs');
 app.use(
     cors({
         // origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
+        allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'X-Access-Token', 'Authorization'],
+        methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
         origin: true,
         credentials: true,
     })
