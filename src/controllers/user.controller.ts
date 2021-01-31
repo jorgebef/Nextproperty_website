@@ -37,8 +37,9 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         // });
         return res
             .cookie('token', jwToken, {
-                expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-                secure: true, // set to true if your using https
+                // expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                maxAge: 900000,
+                // secure: true, // set to true if your using https
                 httpOnly: true,
             })
             .status(200)

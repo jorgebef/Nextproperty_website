@@ -10,7 +10,7 @@ set shortmess=aoO
 badd +43 src/app.ts
 badd +1 src/database.ts
 badd +10 src/routes/property.router.ts
-badd +12 src/controllers/user.controller.ts
+badd +39 src/controllers/user.controller.ts
 badd +38 src/models/user.ts
 badd +10 src/config/config.ts
 badd +8 src/routes/user.router.ts
@@ -32,21 +32,21 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 argglobal
-let s:l = 43 - ((42 * winheight(0) + 33) / 66)
+let s:l = 41 - ((15 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-43
-normal! 09|
+41
+normal! 08|
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
-let s:l = 12 - ((11 * winheight(0) + 33) / 66)
+let s:l = 39 - ((32 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-12
-normal! 014|
+39
+normal! 016|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
