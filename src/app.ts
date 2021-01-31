@@ -54,7 +54,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // Cookies (session based)
-app.use(cookieParser());
+// app.use(cookieParser());
 
 declare module 'express-session' {
     export interface SessionData {
@@ -63,20 +63,20 @@ declare module 'express-session' {
     }
 }
 
-app.use(
-    session({
-        name: Config.SESS_NAME,
-        secret: Config.SESS_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: Number(Config.SESS_LIFETIME), // time in miliseconds
-            // sameSite: true, // same as 'strict'
-            sameSite: false, // same as 'strict'
-            secure: Config.IN_PROD,
-        },
-    })
-);
+// app.use(
+//     session({
+//         name: Config.SESS_NAME,
+//         secret: Config.SESS_SECRET,
+//         resave: false,
+//         saveUninitialized: false,
+//         cookie: {
+//             maxAge: Number(Config.SESS_LIFETIME), // time in miliseconds
+//             // sameSite: true, // same as 'strict'
+//             sameSite: true, // same as 'strict'
+//             secure: Config.IN_PROD,
+//         },
+//     })
+// );
 //
 
 // Routes ===========================
