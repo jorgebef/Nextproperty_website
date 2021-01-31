@@ -36,7 +36,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 58
-normal! 032|
+normal! 022|
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
@@ -47,6 +47,7 @@ normal! zt
 30
 normal! 027|
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
