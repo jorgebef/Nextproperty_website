@@ -52,7 +52,7 @@ app.use(
             'Authorization',
         ],
         methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-        origin: 'localhost:3000',
+        origin: 'http://localhost:3000',
         credentials: true,
     })
 );
