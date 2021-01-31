@@ -51,7 +51,7 @@ app.use(
             'X-Access-Token',
             'Authorization',
         ],
-        methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+        // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
         origin: 'http://localhost:3000',
         credentials: true,
     })
