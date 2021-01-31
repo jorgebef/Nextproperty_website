@@ -54,7 +54,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // Cookies (session based)
-// app.use(cookieParser());
+app.use(cookieParser());
 
 declare module 'express-session' {
     export interface SessionData {
