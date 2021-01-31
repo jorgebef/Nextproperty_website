@@ -7,7 +7,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +58 src/app.ts
+badd +70 src/app.ts
 badd +1 src/database.ts
 badd +10 src/routes/property.router.ts
 badd +45 src/controllers/user.controller.ts
@@ -31,12 +31,12 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 argglobal
-let s:l = 58 - ((51 * winheight(0) + 33) / 66)
+let s:l = 70 - ((61 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-58
-normal! 022|
+70
+normal! 08|
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
