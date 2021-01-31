@@ -42,7 +42,6 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 secure: false, // set to true if your using https
                 httpOnly: false,
             })
-            .header('cookie', jwToken)
             .status(200)
             .json({ msg: 'successful login' })
             .send('successful login');
