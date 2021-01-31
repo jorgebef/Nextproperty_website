@@ -7,7 +7,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +3 src/app.ts
+badd +55 src/app.ts
 badd +12 src/database.ts
 badd +15 src/routes/property.router.ts
 badd +41 src/controllers/user.controller.ts
@@ -15,9 +15,10 @@ badd +4 src/models/user.ts
 badd +8 src/routes/user.router.ts
 badd +20 package.json
 badd +1 Procfile
+badd +0 .gitignore
 argglobal
 %argdel
-edit src/app.ts
+edit .gitignore
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -33,15 +34,6 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
-let s:l = 16 - ((15 * winheight(0) + 33) / 66)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-16
-normal! 08|
-wincmd w
-argglobal
-if bufexists("src/routes/user.router.ts") | buffer src/routes/user.router.ts | else | edit src/routes/user.router.ts | endif
 let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
@@ -50,7 +42,15 @@ normal! zt
 normal! 0
 lcd ~/Documents/Github/Nextproperty-website/server
 wincmd w
-2wincmd w
+argglobal
+if bufexists("~/Documents/Github/Nextproperty-website/server/src/routes/user.router.ts") | buffer ~/Documents/Github/Nextproperty-website/server/src/routes/user.router.ts | else | edit ~/Documents/Github/Nextproperty-website/server/src/routes/user.router.ts | endif
+let s:l = 11 - ((10 * winheight(0) + 33) / 66)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+11
+normal! 020|
+wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
