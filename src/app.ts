@@ -59,12 +59,12 @@ app.use(fileUpload());
 // Cookies (session based)
 app.use(cookieParser());
 
-// declare module 'express-session' {
-//     export interface SessionData {
-//         userId: { [key: string]: any };
-//         loggedUser: { [key: string]: any };
-//     }
-// }
+declare module 'express-session' {
+    export interface SessionData {
+        userId: { [key: string]: any };
+        loggedUser: { [key: string]: any };
+    }
+}
 
 // app.use(
 //     session({
