@@ -43,8 +43,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 httpOnly: false,
             })
             .status(200)
-            .json({ msg: 'successful login' })
-            .send('successful login');
+            .json({ msg: 'successful login' });
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
