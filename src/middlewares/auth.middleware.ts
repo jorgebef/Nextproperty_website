@@ -8,7 +8,7 @@ export const redirLogin = (req: Request, res: Response, next: NextFunction): voi
     // const token = req?.headers?.authorization?.split(' ')[1];
     // const token = req.cookies.token || '';
     const token = req.headers['authorization']?.split(' ')[1] || '';
-    // console.log('this is the token: ' + token);
+    console.log('this is the token: ' + token);
     if (token) {
         console.log('token found!!');
         console.log(token);
