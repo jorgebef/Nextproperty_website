@@ -10,7 +10,7 @@ set shortmess=aoO
 badd +63 src/app.ts
 badd +7 src/database.ts
 badd +15 src/routes/property.router.ts
-badd +36 src/controllers/user.controller.ts
+badd +58 src/controllers/user.controller.ts
 badd +27 src/models/user.ts
 badd +2 src/routes/user.router.ts
 badd +24 src/middlewares/auth.middleware.ts
@@ -32,15 +32,16 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
-let s:l = 36 - ((32 * winheight(0) + 33) / 66)
+let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-36
+1
 normal! 0
+lcd ~/Documents/Github/Nextproperty-website/server
 wincmd w
 argglobal
-if bufexists("src/middlewares/auth.middleware.ts") | buffer src/middlewares/auth.middleware.ts | else | edit src/middlewares/auth.middleware.ts | endif
+if bufexists("~/Documents/Github/Nextproperty-website/server/src/middlewares/auth.middleware.ts") | buffer ~/Documents/Github/Nextproperty-website/server/src/middlewares/auth.middleware.ts | else | edit ~/Documents/Github/Nextproperty-website/server/src/middlewares/auth.middleware.ts | endif
 let s:l = 9 - ((8 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l

@@ -25,7 +25,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 userId: user._id,
             },
             Config.SESS_SECRET,
-            { expiresIn: 90999999990000 } // 15 min in miliseconds
+            { expiresIn: 1000 * 60 * 60 * 24 } // 24h in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
         // return res.status(200).json({
@@ -45,7 +45,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 .send({
                     msg: 'successful login',
                     token: jwToken,
-                    tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                    // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
                 })
         );
     } else {
