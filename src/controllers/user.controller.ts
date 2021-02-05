@@ -25,18 +25,29 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 userId: user._id,
             },
             Config.SESS_SECRET,
-            { expiresIn: 1000999999999999999 } // 24h in miliseconds
+            { expiresIn: 90999999990000 } // 15 min in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
         // return res.status(200).json({
         //     token: jwToken,
         //     expiresIn: 900000, // 15 min in miliseconds
         // });
-        return res.status(200).send({
-            msg: 'successful login',
-            token: jwToken,
-            // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
-        });
+        return (
+            res
+                // .cookie('token', jwToken, {
+                //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                //     // maxAge: 99999999999999,
+                //     // signed: true,
+                //     secure: false, // set to true if your using https
+                //     httpOnly: false,
+                // })
+                .status(200)
+                .send({
+                    msg: 'successful login',
+                    token: jwToken,
+                    tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                })
+        );
     } else {
         return res.status(400).json({ msg: 'password is incorrect' });
     }
