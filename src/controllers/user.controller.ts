@@ -54,7 +54,8 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
 };
 
 export const authVerify = (req: Request, res: Response): void => {
-    const token = req.cookies.token || '';
+    // const token = req.cookies.token || '';
+    const token = req.headers['authorization'] || '';
     // console.log('this is the token: ' + token);
     if (token) {
         // console.log('token found!!');

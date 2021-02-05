@@ -14,7 +14,6 @@ badd +36 src/controllers/user.controller.ts
 badd +27 src/models/user.ts
 badd +2 src/routes/user.router.ts
 badd +24 src/middlewares/auth.middleware.ts
-badd +12 package.json
 argglobal
 %argdel
 edit src/controllers/user.controller.ts
@@ -33,21 +32,21 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
-let s:l = 1 - ((0 * winheight(0) + 33) / 66)
+let s:l = 36 - ((32 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+36
 normal! 0
 wincmd w
 argglobal
 if bufexists("src/middlewares/auth.middleware.ts") | buffer src/middlewares/auth.middleware.ts | else | edit src/middlewares/auth.middleware.ts | endif
-let s:l = 24 - ((23 * winheight(0) + 33) / 66)
+let s:l = 9 - ((8 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
-normal! 014|
+9
+normal! 030|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
