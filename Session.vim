@@ -12,7 +12,7 @@ badd +54 src/app.ts
 badd +22 src/models/user.ts
 badd +16 src/routes/user.router.ts
 badd +26 src/middlewares/auth.middleware.ts
-badd +28 src/controllers/property.controller.ts
+badd +29 src/controllers/property.controller.ts
 badd +22 src/controllers/user.controller.ts
 badd +1 .env
 argglobal
@@ -45,12 +45,12 @@ if bufexists("src/controllers/property.controller.ts") | buffer src/controllers/
 if &buftype ==# 'terminal'
   silent file src/controllers/property.controller.ts
 endif
-let s:l = 28 - ((27 * winheight(0) + 33) / 66)
+let s:l = 28 - ((15 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 28
-normal! 068|
+normal! 041|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
