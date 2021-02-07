@@ -9,12 +9,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +54 src/app.ts
+badd +5 src/database.ts
 badd +22 src/models/user.ts
 badd +16 src/routes/user.router.ts
 badd +24 src/middlewares/auth.middleware.ts
-badd +4 src/config/config.ts
+badd +19 src/config/config.ts
 badd +28 src/controllers/property.controller.ts
-badd +0 src/controllers/user.controller.ts
+badd +2 .gitignore
+badd +25 src/controllers/user.controller.ts
 argglobal
 %argdel
 edit src/models/user.ts
@@ -41,15 +43,15 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
+if bufexists("src/config/config.ts") | buffer src/config/config.ts | else | edit src/config/config.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/controllers/user.controller.ts
+  silent file src/config/config.ts
 endif
-let s:l = 20 - ((19 * winheight(0) + 33) / 66)
+let s:l = 1 - ((0 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-20
+1
 normal! 0
 wincmd w
 2wincmd w
