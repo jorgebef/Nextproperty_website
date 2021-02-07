@@ -25,7 +25,7 @@ export const createPost = async (req: Request, res: Response): Promise<Response>
     await newProperty.save();
     // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
     // create directory named as the reference to upload all the files
-    const imgDir = path.join(`uploads/${req.body.ref.toUpperCase()}`);
+    const imgDir = path.join(`uploads/${req.body.ref}`);
     if (!fs.existsSync(imgDir)) {
         fs.mkdir(imgDir, (err) => {
             if (err) {
@@ -41,11 +41,11 @@ export const createPost = async (req: Request, res: Response): Promise<Response>
             const imgs = (req as any).files.files;
             Object.keys(imgs).forEach((i) => {
                 console.log(imgs[i]);
-                imgs[i].mv(`uploads/${req.body.ref.toUpperCase()}/${imgs[i].name}`);
+                imgs[i].mv(`uploads/${req.body.ref}/${imgs[i].name}`);
             });
         } else {
             const img = (req as any).files.files;
-            img.mv(`uploads/${req.body.ref.toUpperCase()}/${img.name}`);
+            img.mv(`uploads/${req.body.ref}/${img.name}`);
         }
     }
     // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
@@ -65,9 +65,9 @@ export const editPost = async (req: Request, res: Response): Promise<Response> =
     const oldProp = await PropertyModel.findOne({_id: id}).lean();
     // await PropertyModel.findByIdAndUpdate(id, { ...req.body, images });
     await PropertyModel.updateOne({_id: id}, {...req.body, images});
-    if (oldProp?.ref !== req.body.ref.toUpperCase()) {
+    if (oldProp?.ref !== req.body.ref) {
         const oldPath = `uploads/${oldProp?.ref}`;
-        const newPath = `uploads/${req.body.ref.toUpperCase()}`;
+        const newPath = `uploads/${req.body.ref}`;
         fs.mkdirSync(newPath);
         fs.readdirSync(oldPath).map((f) => {
             fs.renameSync(`${oldPath}/${f}`, `${newPath}/${f}`);
@@ -79,10 +79,10 @@ export const editPost = async (req: Request, res: Response): Promise<Response> =
         const imgDelArray = JSON.parse(req.body.imgDel);
         if (imgDelArray.length > 1) {
             imgDelArray.map((i: string) => {
-                fs.unlinkSync(`uploads/${req.body.ref.toUpperCase()}/${i}`);
+                fs.unlinkSync(`uploads/${req.body.ref}/${i}`);
             });
         } else {
-            fs.unlinkSync(`uploads/${req.body.ref.toUpperCase()}/${imgDelArray}`);
+            fs.unlinkSync(`uploads/${req.body.ref}/${imgDelArray}`);
         }
     }
     // Retrieve the files from the request
@@ -92,11 +92,11 @@ export const editPost = async (req: Request, res: Response): Promise<Response> =
             const imgs = (req as any).files.files;
             Object.keys(imgs).forEach((i) => {
                 console.log(imgs[i]);
-                imgs[i].mv(`uploads/${req.body.ref.toUpperCase()}/${imgs[i].name}`);
+                imgs[i].mv(`uploads/${req.body.ref}/${imgs[i].name}`);
             });
         } else {
             const img = (req as any).files.files;
-            img.mv(`uploads/${req.body.ref.toUpperCase()}/${img.name}`);
+            img.mv(`uploads/${req.body.ref}/${img.name}`);
         }
     }
     return res.status(200).json({msg: 'ok'});

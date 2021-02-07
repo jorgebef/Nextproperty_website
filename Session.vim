@@ -9,10 +9,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +54 src/app.ts
-badd +22 src/models/user.ts
+badd +1 src/models/user.ts
 badd +16 src/routes/user.router.ts
 badd +26 src/middlewares/auth.middleware.ts
-badd +29 src/controllers/property.controller.ts
+badd +28 src/controllers/property.controller.ts
 badd +22 src/controllers/user.controller.ts
 badd +1 .env
 argglobal
@@ -50,7 +50,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 28
-normal! 041|
+normal! 053|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
