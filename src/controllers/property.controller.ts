@@ -26,7 +26,7 @@ export const createPost = async (req: Request, res: Response): Promise<Response>
     // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
     // create directory named as the reference to upload all the files
     console.log(req.body.ref + '======================================')
-    const imgDir = path.join(`uploads/${req.body.ref}`);
+    const imgDir = path.join(`uploads/${req.body.ref.toUpperCase()}`);
     if (!fs.existsSync(imgDir)) {
         fs.mkdir(imgDir, (err) => {
             if (err) {
