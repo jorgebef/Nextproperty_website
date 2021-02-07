@@ -9,10 +9,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +54 src/app.ts
-badd +1 src/models/user.ts
+badd +22 src/models/user.ts
 badd +16 src/routes/user.router.ts
 badd +26 src/middlewares/auth.middleware.ts
-badd +123 src/controllers/property.controller.ts
+badd +125 src/controllers/property.controller.ts
 badd +22 src/controllers/user.controller.ts
 badd +1 .env
 argglobal
@@ -33,11 +33,11 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 argglobal
-let s:l = 22 - ((21 * winheight(0) + 33) / 66)
+let s:l = 27 - ((26 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-22
+27
 normal! 0
 wincmd w
 argglobal
@@ -45,12 +45,12 @@ if bufexists("src/controllers/property.controller.ts") | buffer src/controllers/
 if &buftype ==# 'terminal'
   silent file src/controllers/property.controller.ts
 endif
-let s:l = 122 - ((43 * winheight(0) + 33) / 66)
+let s:l = 28 - ((27 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-122
-normal! 025|
+28
+normal! 045|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
