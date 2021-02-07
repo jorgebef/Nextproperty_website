@@ -118,8 +118,12 @@ export const deleteGet = async (req: Request, res: Response): Promise<Response> 
     const prop = await PropertyModel.findById(id).lean();
     // Delete the property selected with id
     const imgDir = prop ? path.join(`uploads/${prop.ref}`) : '';
-    fs.rmdirSync(imgDir, {recursive: true});
-    await PropertyModel.findByIdAndDelete(id);
+    try {
+        fs.rmdirSync(imgDir, {recursive: true});
+    } catch (error) {
+        console.log(error)
+    }
+    await PropertyModel.findByIdAndDelete(id)
     return res.status(200).json({msg: 'ok'});
 };
 

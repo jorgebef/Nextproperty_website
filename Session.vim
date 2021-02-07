@@ -9,13 +9,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +54 src/app.ts
-badd +5 src/database.ts
-badd +22 src/models/user.ts
+badd +1 src/models/user.ts
 badd +16 src/routes/user.router.ts
-badd +24 src/middlewares/auth.middleware.ts
-badd +19 src/config/config.ts
-badd +28 src/controllers/property.controller.ts
-badd +25 src/controllers/user.controller.ts
+badd +26 src/middlewares/auth.middleware.ts
+badd +123 src/controllers/property.controller.ts
+badd +22 src/controllers/user.controller.ts
+badd +1 .env
 argglobal
 %argdel
 edit src/models/user.ts
@@ -31,7 +30,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 argglobal
 let s:l = 22 - ((21 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
@@ -41,19 +41,20 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists("src/config/config.ts") | buffer src/config/config.ts | else | edit src/config/config.ts | endif
+if bufexists("src/controllers/property.controller.ts") | buffer src/controllers/property.controller.ts | else | edit src/controllers/property.controller.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/config/config.ts
+  silent file src/controllers/property.controller.ts
 endif
-let s:l = 19 - ((18 * winheight(0) + 33) / 66)
+let s:l = 122 - ((43 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-19
-normal! 07|
+122
+normal! 025|
 wincmd w
 2wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 109 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 110 + 110) / 220)
 if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
