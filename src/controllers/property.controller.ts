@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
 import fs from 'fs';
 import path from 'path';
 
 import PropertyModel from '../models/property';
 
-import { data } from '../middlewares/navbar.middleware';
+import {data} from '../middlewares/navbar.middleware';
 
 // Create property route  =========================================================
 export const createGet = async (req: Request, res: Response): Promise<Response> => {
@@ -21,7 +21,7 @@ export const createPost = async (req: Request, res: Response): Promise<Response>
     } else {
         images = '';
     }
-    const newProperty = new PropertyModel({ ...req.body, images: images });
+    const newProperty = new PropertyModel({...req.body, images: images});
     await newProperty.save();
     // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
     // create directory named as the reference to upload all the files
@@ -30,7 +30,7 @@ export const createPost = async (req: Request, res: Response): Promise<Response>
         fs.mkdir(imgDir, (err) => {
             if (err) {
                 console.log(err);
-                return res.json({ msg: err });
+                return res.json({msg: err});
             }
         });
     }
@@ -49,12 +49,12 @@ export const createPost = async (req: Request, res: Response): Promise<Response>
         }
     }
     // =============> LOGIC FOR IMAGE UPLOAD GOES HERE <====================
-    return res.status(200).json({ msg: 'ok' });
+    return res.status(200).json({msg: 'ok'});
 };
 
 // Edit property route ================================================================
 export const editPost = async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.params;
+    const {id} = req.params;
     let images;
     if (req.body.images != 'undefined') {
         images = JSON.parse(req.body.images);
@@ -62,9 +62,9 @@ export const editPost = async (req: Request, res: Response): Promise<Response> =
         images = '';
     }
     // const oldProp = await PropertyModel.findById(id).lean();
-    const oldProp = await PropertyModel.findOne({ _id: id }).lean();
+    const oldProp = await PropertyModel.findOne({_id: id}).lean();
     // await PropertyModel.findByIdAndUpdate(id, { ...req.body, images });
-    await PropertyModel.updateOne({ _id: id }, { ...req.body, images });
+    await PropertyModel.updateOne({_id: id}, {...req.body, images});
     if (oldProp?.ref !== req.body.ref) {
         const oldPath = `uploads/${oldProp?.ref}`;
         const newPath = `uploads/${req.body.ref}`;
@@ -99,7 +99,7 @@ export const editPost = async (req: Request, res: Response): Promise<Response> =
             img.mv(`uploads/${req.body.ref}/${img.name}`);
         }
     }
-    return res.status(200).json({ msg: 'ok' });
+    return res.status(200).json({msg: 'ok'});
 };
 
 // List properties route  =========================================================
@@ -114,18 +114,18 @@ export const listGet = async (req: Request, res: Response): Promise<Response> =>
 // Delete property route  =========================================================
 export const deleteGet = async (req: Request, res: Response): Promise<Response> => {
     // Obtain the id passed param from the url
-    const { id } = req.params;
+    const {id} = req.params;
     const prop = await PropertyModel.findById(id).lean();
     // Delete the property selected with id
     const imgDir = prop ? path.join(`uploads/${prop.ref}`) : '';
-    fs.rmdirSync(imgDir, { recursive: true });
+    fs.rmdirSync(imgDir, {recursive: true});
     await PropertyModel.findByIdAndDelete(id);
-    return res.status(200).json({ msg: 'ok' });
+    return res.status(200).json({msg: 'ok'});
 };
 
 // Get single property route  =========================================================
 export const propGet = async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.params;
+    const {id} = req.params;
     const prop = await PropertyModel.findById(id).lean();
     // const imgDir = prop ? path.join(`uploads/${prop.ref}`) : '';
     // console.log(fs.readdirSync(imgDir));
