@@ -22,7 +22,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         const jwToken = jwt.sign(
             {
                 email: req.body.email,
-                userId: user._id,
+                userId: user?._id,
             },
             Config.SESS_SECRET,
             {expiresIn: 1000 * 60 * 60 * 24} // 24h in miliseconds
