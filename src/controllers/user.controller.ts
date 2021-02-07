@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
 import UserModel from '../models/user';
 import Config from '../config/config';
 import jwt from 'jsonwebtoken';
@@ -12,12 +12,12 @@ export const logInGet = async (req: Request, res: Response): Promise<void> => {
 export const logInPost = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.email || !req.body.password) {
         console.log(req.body);
-        return res.status(400).json({ msg: 'Please provide both an email and a password' });
+        return res.status(400).json({msg: 'Please provide both an email and a password'});
     }
-    const user = await UserModel.findOne({ email: req.body.email });
+    const user = await UserModel.findOne({email: req.body.email});
     // Compare the password typed to the stored one running the method from the
     // Interface and Schema
-    const isMatch = await user.comparePassword(req.body.password);
+    const isMatch = await user?.comparePassword(req.body.password);
     if (isMatch) {
         const jwToken = jwt.sign(
             {
@@ -25,7 +25,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
                 userId: user._id,
             },
             Config.SESS_SECRET,
-            { expiresIn: 1000 * 60 * 60 * 24 } // 24h in miliseconds
+            {expiresIn: 1000 * 60 * 60 * 24} // 24h in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
         // return res.status(200).json({
@@ -38,7 +38,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
             // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
         });
     } else {
-        return res.status(400).json({ msg: 'password is incorrect' });
+        return res.status(400).json({msg: 'password is incorrect'});
     }
 };
 
@@ -68,7 +68,7 @@ export const logOut = async (req: Request, res: Response): Promise<Response> => 
             httpOnly: true,
         })
         .status(200)
-        .json({ msg: 'successfully logged out' });
+        .json({msg: 'successfully logged out'});
 };
 
 // // Logout post request controller =============================================

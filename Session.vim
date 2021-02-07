@@ -14,7 +14,7 @@ badd +16 src/routes/user.router.ts
 badd +24 src/middlewares/auth.middleware.ts
 badd +4 src/config/config.ts
 badd +28 src/controllers/property.controller.ts
-badd +3 .gitignore
+badd +0 src/controllers/user.controller.ts
 argglobal
 %argdel
 edit src/models/user.ts
@@ -41,15 +41,15 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists("src/controllers/property.controller.ts") | buffer src/controllers/property.controller.ts | else | edit src/controllers/property.controller.ts | endif
+if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/controllers/property.controller.ts
+  silent file src/controllers/user.controller.ts
 endif
-let s:l = 1 - ((0 * winheight(0) + 33) / 66)
+let s:l = 20 - ((19 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+20
 normal! 0
 wincmd w
 2wincmd w
