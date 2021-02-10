@@ -53,7 +53,7 @@ app.use(
         ],
         // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
         // origin: 'http://localhost:3000',
-        origin: ['http://172.19.70.250/', 'http://localhost:3000'],
+        // origin: ['http://172.19.70.250/', 'http://localhost:3000'],
         credentials: true,
     })
 );
@@ -63,7 +63,7 @@ app.use(morgan('dev'));
 app.use(express.static('uploads'));
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(fileUpload());
 
 // Cookies (session based)
@@ -71,8 +71,8 @@ app.use(cookieParser());
 
 declare module 'express-session' {
     export interface SessionData {
-        userId: { [key: string]: any };
-        loggedUser: { [key: string]: any };
+        userId: {[key: string]: any};
+        loggedUser: {[key: string]: any};
     }
 }
 
