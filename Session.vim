@@ -8,16 +8,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +86 src/app.ts
+badd +88 src/app.ts
 badd +8 src/models/user.ts
-badd +12 src/routes/user.router.ts
+badd +9 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
 badd +5 src/controllers/property.controller.ts
-badd +49 src/controllers/user.controller.ts
+badd +32 src/controllers/user.controller.ts
 badd +1 src/routes/property.router.ts
 argglobal
 %argdel
-edit src/app.ts
+edit src/controllers/user.controller.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -32,26 +32,25 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-let s:l = 88 - ((47 * winheight(0) + 28) / 57)
+let s:l = 32 - ((29 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-88
-normal! 023|
+32
+normal! 016|
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 49 - ((28 * winheight(0) + 28) / 57)
+let s:l = 51 - ((30 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-49
-normal! 016|
+51
+normal! 040|
 wincmd w
-2wincmd w
 wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

@@ -28,7 +28,9 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
             {expiresIn: 1000 * 60 * 60 * 24} // 24h in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
-        return res.status(200).json({
+        return res.status(200)
+        .cookie('token', jwToken,{domain:'localhost'})
+        .json({
             token: jwToken,
             expiresIn: 900000, // 15 min in miliseconds
         });
