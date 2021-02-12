@@ -48,7 +48,7 @@ export const authVerify = (req: Request, res: Response): boolean => {
     const token = req.cookies.token || '';
     // const token = req.headers['authorization']?.split(' ')[1] || '';
     console.log(req.headers.authorization);
-    // console.log('this is the token: ' + token);
+    console.log('this is the token: ' + token);
     if (token) {
         // console.log('token found!!');
         jwt.verify(token, Config.SESS_SECRET);

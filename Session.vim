@@ -10,14 +10,14 @@ endif
 set shortmess=aoO
 badd +46 src/app.ts
 badd +8 src/models/user.ts
-badd +2 src/routes/user.router.ts
+badd +12 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
 badd +5 src/controllers/property.controller.ts
 badd +37 src/controllers/user.controller.ts
-badd +5 src/routes/property.router.ts
+badd +10 src/routes/property.router.ts
 argglobal
 %argdel
-edit src/routes/property.router.ts
+edit src/controllers/user.controller.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
