@@ -8,16 +8,17 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +70 src/app.ts
+badd +86 src/app.ts
 badd +8 src/models/user.ts
 badd +12 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
 badd +5 src/controllers/property.controller.ts
-badd +51 src/controllers/user.controller.ts
+badd +52 src/controllers/user.controller.ts
 badd +10 src/routes/property.router.ts
+badd +15 ~/Documents/Github/Nextproperty-website/server/src/config/config.ts
 argglobal
 %argdel
-edit src/controllers/user.controller.ts
+edit src/app.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -45,11 +46,11 @@ if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 54 - ((53 * winheight(0) + 28) / 57)
+let s:l = 55 - ((54 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-54
+55
 normal! 046|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
