@@ -34,7 +34,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         // });
         return res.status(200)
             .cookie('token', jwToken)
-            .send({
+            .json({
                 msg: 'successful login',
                 token: jwToken,
                 // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
