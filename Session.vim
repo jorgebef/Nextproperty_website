@@ -8,12 +8,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +46 src/app.ts
+badd +70 src/app.ts
 badd +8 src/models/user.ts
 badd +12 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
 badd +5 src/controllers/property.controller.ts
-badd +37 src/controllers/user.controller.ts
+badd +51 src/controllers/user.controller.ts
 badd +10 src/routes/property.router.ts
 argglobal
 %argdel
