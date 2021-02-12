@@ -32,19 +32,21 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         //     token: jwToken,
         //     expiresIn: 900000, // 15 min in miliseconds
         // });
-        return res.status(200).send({
-            msg: 'successful login',
-            token: jwToken,
-            // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
-        });
+        return res.status(200)
+            .cookie('token', jwToken)
+            .send({
+                msg: 'successful login',
+                token: jwToken,
+                // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
+            });
     } else {
         return res.status(400).json({msg: 'password is incorrect'});
     }
 };
 
 export const authVerify = (req: Request, res: Response): void => {
-    const token = req.cookies.token || '';
-    // const token = req.headers['authorization']?.split(' ')[1] || '';
+    // const token = req.cookies.token || '';
+    const token = req.headers['authorization']?.split(' ')[1] || '';
     console.log(req.headers.authorization);
     // console.log('this is the token: ' + token);
     if (token) {
