@@ -28,23 +28,23 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
             {expiresIn: 1000 * 60 * 60 * 24} // 24h in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
-        // return res.status(200).json({
-        //     token: jwToken,
-        //     expiresIn: 900000, // 15 min in miliseconds
-        // });
-        return res.status(200)
-            .cookie('token', jwToken)
-            .json({
-                msg: 'successful login',
-                token: jwToken,
-                // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
-            });
+        return res.status(200).json({
+            token: jwToken,
+            expiresIn: 900000, // 15 min in miliseconds
+        });
+        // return res.status(200)
+        //     .cookie('token', jwToken)
+        //     .json({
+        //         msg: 'successful login',
+        //         token: jwToken,
+        //         // tokenExpiry: new Date(Date.now() + 1000 * 60 * 60 * 24),
+        //     });
     } else {
         return res.status(400).json({msg: 'password is incorrect'});
     }
 };
 
-export const authVerify = (req: Request, res: Response): void => {
+export const authVerify = (req: Request, res: Response): boolean => {
     const token = req.cookies.token || '';
     // const token = req.headers['authorization']?.split(' ')[1] || '';
     console.log(req.headers.authorization);
@@ -54,10 +54,12 @@ export const authVerify = (req: Request, res: Response): void => {
         jwt.verify(token, Config.SESS_SECRET);
         console.log('token successfully verified');
         res.status(200).json('Token verified');
+        return true
     } else {
         console.log('NOT VERIFIED!!!');
         // res.redirect('/api/login');
         res.status(400).json('Not logged in!!');
+        return false
     }
 };
 

@@ -10,13 +10,14 @@ endif
 set shortmess=aoO
 badd +46 src/app.ts
 badd +8 src/models/user.ts
-badd +15 src/routes/user.router.ts
-badd +10 src/middlewares/auth.middleware.ts
-badd +28 src/controllers/property.controller.ts
+badd +2 src/routes/user.router.ts
+badd +7 src/middlewares/auth.middleware.ts
+badd +5 src/controllers/property.controller.ts
 badd +37 src/controllers/user.controller.ts
+badd +5 src/routes/property.router.ts
 argglobal
 %argdel
-edit src/middlewares/auth.middleware.ts
+edit src/routes/property.router.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -32,29 +33,27 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
-let s:l = 11 - ((10 * winheight(0) + 28) / 57)
+let s:l = 1 - ((0 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
-normal! 014|
+1
+normal! 0
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 37 - ((36 * winheight(0) + 28) / 57)
+let s:l = 54 - ((53 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-37
-normal! 014|
+54
+normal! 046|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
-if exists(':tcd') == 2 | tcd ~/Documents/Github/Nextproperty-website/server | endif
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

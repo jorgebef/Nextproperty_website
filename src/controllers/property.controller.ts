@@ -79,10 +79,18 @@ export const editPost = async (req: Request, res: Response): Promise<Response> =
         const imgDelArray = JSON.parse(req.body.imgDel);
         if (imgDelArray.length > 1) {
             imgDelArray.map((i: string) => {
-                fs.unlinkSync(`uploads/${req.body.ref.toUpperCase()}/${i}`);
+                try {
+                    fs.unlinkSync(`uploads/${req.body.ref.toUpperCase()}/${i}`);
+                } catch (error) {
+                    console.log(error)
+                }
             });
         } else {
-            fs.unlinkSync(`uploads/${req.body.ref.toUpperCase()}/${imgDelArray}`);
+            try {
+                fs.unlinkSync(`uploads/${req.body.ref.toUpperCase()}/${imgDelArray}`);
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
     // Retrieve the files from the request
