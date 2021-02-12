@@ -8,15 +8,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +80 src/app.ts
+badd +46 src/app.ts
 badd +8 src/models/user.ts
 badd +9 src/routes/user.router.ts
 badd +10 src/middlewares/auth.middleware.ts
 badd +107 src/controllers/property.controller.ts
-badd +65 src/controllers/user.controller.ts
+badd +36 src/controllers/user.controller.ts
 argglobal
 %argdel
-edit src/app.ts
+edit src/middlewares/auth.middleware.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -32,11 +32,11 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
-let s:l = 46 - ((3 * winheight(0) + 28) / 57)
+let s:l = 10 - ((9 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-46
+10
 normal! 0
 wincmd w
 argglobal
@@ -44,12 +44,12 @@ if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 1 - ((0 * winheight(0) + 28) / 57)
+let s:l = 36 - ((29 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+36
+normal! 037|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
