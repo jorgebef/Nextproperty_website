@@ -46,6 +46,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
 
 export const authVerify = (req: Request, res: Response): boolean => {
     const token = req.cookies.token || '';
+    console.log('cookies: ', req.cookies)
     // const token = req.headers['authorization']?.split(' ')[1] || '';
     // console.log(req.headers.authorization);
     console.log('this is the token: ' + token);
