@@ -6,8 +6,8 @@ import Config from '../config/config';
 // const authenticated = passport.authenticate('jwt', { session: false });
 export const redirLogin = (req: Request, res: Response, next: NextFunction): void => {
     // const token = req?.headers?.authorization?.split(' ')[1];
-    // const token = req.cookies.token || '';
-    const token = req.headers['authorization']?.split(' ')[1] || '';
+    const token = req.cookies.token || '';
+    // const token = req.headers['authorization']?.split(' ')[1] || '';
     console.log('this is the token: ' + token);
     if (token) {
         console.log('token found!!');

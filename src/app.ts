@@ -1,6 +1,6 @@
 // Main application control
 import express from 'express';
-// import session from 'express-session';
+import session from 'express-session';
 import morgan from 'morgan';
 // import exphbs from 'express-handlebars';
 // import path from 'path';
@@ -76,21 +76,21 @@ declare module 'express-session' {
     }
 }
 
-// app.use(
-//     session({
-//         name: Config.SESS_NAME,
-//         secret: Config.SESS_SECRET,
-//         resave: false,
-//         saveUninitialized: false,
-//         cookie: {
-//             maxAge: Number(Config.SESS_LIFETIME), // time in miliseconds
-//             // sameSite: true, // same as 'strict'
-//             sameSite: true, // same as 'strict'
-//             secure: Config.IN_PROD,
-//         },
-//     })
-// );
-//
+app.use(
+    session({
+        name: Config.SESS_NAME,
+        secret: Config.SESS_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: Number(Config.SESS_LIFETIME), // time in miliseconds
+            // sameSite: true, // same as 'strict'
+            sameSite: true, // same as 'strict'
+            secure: Config.IN_PROD,
+        },
+    })
+);
+
 
 // Routes ===========================
 app.use(propertyRouter);
