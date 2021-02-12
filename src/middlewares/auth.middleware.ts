@@ -16,7 +16,7 @@ export const redirLogin = (req: Request, res: Response, next: NextFunction): voi
         console.log('token successfully verified');
         next();
     } else {
-        console.log('NOT VERIFIED!!!');
+        console.log('Redirecting to Login screen');
         // res.redirect('/api/login');
         res.status(403).json('Not logged in!!');
     }
