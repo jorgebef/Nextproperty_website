@@ -41,19 +41,19 @@ app.set('port', Config.PORT);
 app.use(
     cors({
         // origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
-        allowedHeaders: [
-            'Access-Control-Allow-Credentials',
-            'Access-Control-Allow-Origin',
-            'Origin',
-            'X-Requested-With',
-            'Content-Type',
-            'Accept',
-            'X-Access-Token',
-            'Authorization',
-        ],
-        // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+        // allowedHeaders: [
+        //     'Access-Control-Allow-Credentials',
+        //     'Access-Control-Allow-Origin',
+        //     'Origin',
+        //     'X-Requested-With',
+        //     'Content-Type',
+        //     'Accept',
+        //     'X-Access-Token',
+        //     'Authorization',
+        // ],
+        methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
         // origin: 'http://localhost:3000',
-        origin: ['http://172.19.70.250/', 'http://localhost:3000'],
+        origin: 'http://localhost:3000',
         credentials: true,
     })
 );
