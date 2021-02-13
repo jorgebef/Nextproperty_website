@@ -38,25 +38,25 @@ app.set('port', Config.PORT);
 // app.set('view engine', '.hbs');
 
 // Middlewares ======================
-// app.use(
-//     cors({
-//         // origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
-//         allowedHeaders: [
-//             'Access-Control-Allow-Credentials',
-//             'Access-Control-Allow-Origin',
-//             'Origin',
-//             'X-Requested-With',
-//             'Content-Type',
-//             'Accept',
-//             'X-Access-Token',
-//             'Authorization',
-//         ],
-//         // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-//         // origin: 'http://localhost:3000',
-//         origin: ['185.110.79.20', 'http://localhost:3000'],
-//         credentials: true,
-//     })
-// );
+app.use(
+    cors({
+        // origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
+        allowedHeaders: [
+            'Access-Control-Allow-Credentials',
+            'Access-Control-Allow-Origin',
+            'Origin',
+            'X-Requested-With',
+            'Content-Type',
+            'Accept',
+            'X-Access-Token',
+            'Authorization',
+        ],
+        // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+        // origin: 'http://localhost:3000',
+        origin: ['185.110.79.20', 'http://localhost:3000'],
+        credentials: true,
+    })
+);
 app.use(morgan('dev'));
 
 // app.use(express.static(path.join(__dirname + '/uploads')));
