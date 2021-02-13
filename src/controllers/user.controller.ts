@@ -31,7 +31,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         return res.status(200)
             // .header('Access-Control-Allow-Origin','*')
             .cookie('token', jwToken, {
-                // domain: 'localhost',
+                domain: 'http://nextproperty-client.herokuapp.com',
                 httpOnly: false,
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
             })
