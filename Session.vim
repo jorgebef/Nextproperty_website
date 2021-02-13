@@ -45,12 +45,12 @@ if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 58 - ((33 * winheight(0) + 28) / 57)
+let s:l = 56 - ((31 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-58
-normal! 020|
+56
+normal! 041|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
