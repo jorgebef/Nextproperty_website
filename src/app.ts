@@ -57,7 +57,7 @@ app.use(
         ],
         // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
         // origin: 'http://localhost:3000',
-        origin: ['http://82.223.103.157', 'http://localhost:3000'],
+        origin: ['http://82.223.103.157:3000', 'http://localhost:3000'],
         // origin: 'http://nextproperty-client.herokuapp.com',
         credentials: true,
     })
