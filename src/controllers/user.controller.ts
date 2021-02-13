@@ -28,7 +28,8 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
             {expiresIn: 1000 * 60 * 60 * 24} // 24h in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
-        return res.header('Access-Control-Allow-Origin: *').status(200)
+        return res .status(200)
+        .header('Access-Control-Allow-Origin')
         .cookie('token', jwToken,{domain:'localhost',sameSite:false,httpOnly:false,maxAge:9999999})
         .json({
             token: jwToken,
