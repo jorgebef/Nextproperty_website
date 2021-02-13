@@ -30,21 +30,19 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
-exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
+wincmd =
 argglobal
-let s:l = 1 - ((0 * winheight(0) + 28) / 57)
+let s:l = 32 - ((31 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
-lcd ~/Documents/Github/Nextproperty-website/server
+32
+normal! 088|
 wincmd w
 argglobal
-if bufexists("~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts") | buffer ~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts | else | edit ~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts | endif
+if bufexists("src/controllers/property.controller.ts") | buffer src/controllers/property.controller.ts | else | edit src/controllers/property.controller.ts | endif
 if &buftype ==# 'terminal'
-  silent file ~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts
+  silent file src/controllers/property.controller.ts
 endif
 let s:l = 5 - ((4 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
@@ -53,8 +51,7 @@ normal! zt
 5
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
-exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
+wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

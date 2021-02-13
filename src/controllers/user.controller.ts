@@ -29,7 +29,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         );
         console.log('Successful login!!!!!!!!!!');
         return res.header('Access-Control-Allow-Origin: *').status(200)
-        // .cookie('token', jwToken,{domain:'localhost'})
+        .cookie('token', jwToken,{domain:'localhost',sameSite:false,httpOnly:false,maxAge:9999999})
         .json({
             token: jwToken,
             expiresIn: 900000, // 15 min in miliseconds
