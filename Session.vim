@@ -8,7 +8,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/app.ts
+badd +46 src/app.ts
 badd +8 src/models/user.ts
 badd +9 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
@@ -17,7 +17,7 @@ badd +32 src/controllers/user.controller.ts
 badd +1 src/routes/property.router.ts
 argglobal
 %argdel
-edit src/app.ts
+edit src/controllers/user.controller.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -33,17 +33,18 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
-let s:l = 56 - ((28 * winheight(0) + 28) / 57)
+let s:l = 1 - ((0 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-56
-normal! 032|
+1
+normal! 0
+lcd ~/Documents/Github/Nextproperty-website/server
 wincmd w
 argglobal
-if bufexists("src/controllers/property.controller.ts") | buffer src/controllers/property.controller.ts | else | edit src/controllers/property.controller.ts | endif
+if bufexists("~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts") | buffer ~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts | else | edit ~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/controllers/property.controller.ts
+  silent file ~/Documents/Github/Nextproperty-website/server/src/controllers/property.controller.ts
 endif
 let s:l = 5 - ((4 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
