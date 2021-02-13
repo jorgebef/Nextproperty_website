@@ -13,7 +13,7 @@ badd +8 src/models/user.ts
 badd +9 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
 badd +16 src/controllers/property.controller.ts
-badd +42 src/controllers/user.controller.ts
+badd +56 src/controllers/user.controller.ts
 badd +1 src/routes/property.router.ts
 argglobal
 %argdel
@@ -30,7 +30,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
 let s:l = 79 - ((39 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
@@ -44,15 +45,16 @@ if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 42 - ((41 * winheight(0) + 28) / 57)
+let s:l = 33 - ((26 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-42
-normal! 012|
+33
+normal! 0
 wincmd w
 2wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
