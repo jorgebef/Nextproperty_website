@@ -38,7 +38,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 56
-normal! 019|
+normal! 032|
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
@@ -52,6 +52,7 @@ normal! zt
 32
 normal! 09|
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
 exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 tabnext 1
