@@ -43,8 +43,8 @@ app.use(
         // origin: [`${process.env.FRONT_URL}`, 'http://localhost:3000'],
         allowedHeaders: [
             'Access-Control-Allow-Credentials',
-            'Access-Control-Allow-Origin: *',
-            'Origin',
+            'Access-Control-Allow-Origin',
+            // 'Origin',
             'X-Requested-With',
             'Content-Type',
             'Accept',
