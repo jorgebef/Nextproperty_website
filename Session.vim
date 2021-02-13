@@ -30,7 +30,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 argglobal
 let s:l = 21 - ((16 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
@@ -49,10 +50,10 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 36
-normal! 020|
+normal! 056|
 wincmd w
-2wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
+exe 'vert 2resize ' . ((&columns * 109 + 110) / 220)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
