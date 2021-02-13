@@ -39,12 +39,6 @@ app.set('port', Config.PORT);
 // );
 // app.set('view engine', '.hbs');
 
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'localhost');
-    // res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
 
 
 // Middlewares ======================

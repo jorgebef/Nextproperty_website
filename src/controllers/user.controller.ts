@@ -28,17 +28,17 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
             {expiresIn: 1000 * 60 * 60 * 24} // 24h in miliseconds
         );
         console.log('Successful login!!!!!!!!!!');
-        return res .status(200)
-        // .header('Access-Control-Allow-Origin','*')
-        .cookie('token', jwToken,{
-            domain : '82.223.103.157',
-            httpOnly : true,
-            expires: new Date(Date.now() + 1000*60*60*24)
-        })
-        .json({
-            token: jwToken,
-            expiresIn: 900000, // 15 min in miliseconds
-        });
+        return res.status(200)
+            // .header('Access-Control-Allow-Origin','*')
+            .cookie('token', jwToken, {
+                // domain: 'localhost',
+                httpOnly: false,
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
+            })
+            .json({
+                token: jwToken,
+                expiresIn: 900000, // 15 min in miliseconds
+            });
         // return res.status(200)
         //     .cookie('token', jwToken)
         //     .json({
