@@ -18,6 +18,8 @@ import Config from './config/config';
 // Declare and create the app as an Express app
 const app = express();
 
+// Cookies (session based)
+app.use(cookieParser());
 // Settings =========================
 Config.isProd();
 app.set('port', Config.PORT);
@@ -66,8 +68,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(fileUpload());
 
-// Cookies (session based)
-app.use(cookieParser());
 
 declare module 'express-session' {
     export interface SessionData {
