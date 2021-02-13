@@ -44,7 +44,7 @@ app.use(
         allowedHeaders: [
             'Access-Control-Allow-Credentials',
             'Access-Control-Allow-Origin',
-            // 'Origin',
+            'Origin',
             'X-Requested-With',
             'Content-Type',
             'Accept',
@@ -53,7 +53,7 @@ app.use(
         ],
         // methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
         // origin: 'http://localhost:3000',
-        // origin: ['185.110.79.20', 'http://localhost:3000'],
+        origin: ['185.110.79.20', 'http://localhost:3000'],
         credentials: true,
     })
 );
