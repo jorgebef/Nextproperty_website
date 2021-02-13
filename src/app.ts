@@ -76,21 +76,20 @@ declare module 'express-session' {
     }
 }
 
-app.use(
-    session({
-        name: Config.SESS_NAME,
-        secret: Config.SESS_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: Number(Config.SESS_LIFETIME), // time in miliseconds
-            domain: 'localhost',
-            // sameSite: true, // same as 'strict'
-            sameSite: false, // same as 'strict'
-            secure: Config.IN_PROD,
-        },
-    })
-);
+// app.use(
+//     session({
+//         name: Config.SESS_NAME,
+//         secret: Config.SESS_SECRET,
+//         resave: false,
+//         saveUninitialized: false,
+//         cookie: {
+//             maxAge: Number(Config.SESS_LIFETIME), // time in miliseconds
+//             // sameSite: true, // same as 'strict'
+//             sameSite: false, // same as 'strict'
+//             secure: Config.IN_PROD,
+//         },
+//     })
+// );
 
 
 // Routes ===========================
