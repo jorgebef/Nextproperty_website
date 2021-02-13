@@ -30,12 +30,12 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         console.log('Successful login!!!!!!!!!!');
         return res.status(200)
             // .header('Access-Control-Allow-Origin','*')
-            // .cookie('token', jwToken, {
-            //     domain: 'http://nextproperty-client.herokuapp.com',
-            //     httpOnly: false,
-            //     secure: false,
-            //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
-            // })
+            .cookie('token', jwToken, {
+                domain: 'http://nextproperty-client.herokuapp.com',
+                httpOnly: false,
+                secure: false,
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
+            })
             .json({
                 token: jwToken,
                 expiresIn: 900000, // 15 min in miliseconds
