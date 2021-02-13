@@ -30,12 +30,12 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         console.log('Successful login!!!!!!!!!!');
         return res.status(200)
             // .header('Access-Control-Allow-Origin','*')
-            .cookie('token', jwToken, {
-                domain: 'http://nextproperty-client.herokuapp.com',
-                httpOnly: false,
-                secure: false,
-                expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
-            })
+            // .cookie('token', jwToken, {
+            //     domain: 'http://nextproperty-client.herokuapp.com',
+            //     httpOnly: false,
+            //     secure: false,
+            //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
+            // })
             .json({
                 token: jwToken,
                 expiresIn: 900000, // 15 min in miliseconds
@@ -53,10 +53,10 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
 };
 
 export const authVerify = (req: Request, res: Response): boolean => {
-    const token = req.cookies.token || '';
-    console.log('cookies: ', req.cookies)
+    // const token = req.cookies.token || '';
+    // console.log('cookies: ', req.cookies)
     // console.log('cookies: ', req.headers.cookie)
-    // const token = req.headers['authorization']?.split(' ')[1] || '';
+    const token = req.headers['authorization']?.split(' ')[1] || '';
     // console.log(req);
     console.log('this is the token: ' + token);
     // console.log('cookies:' + req.cookies);
@@ -77,11 +77,11 @@ export const authVerify = (req: Request, res: Response): boolean => {
 // Logout post request controller =============================================
 export const logOut = async (req: Request, res: Response): Promise<Response> => {
     return res
-        .cookie('token', null, {
-            expires: new Date(Date.now()),
-            secure: false, // set to true if your using https
-            httpOnly: true,
-        })
+        // .cookie('token', null, {
+        //     expires: new Date(Date.now()),
+        //     secure: false, // set to true if your using https
+        //     httpOnly: true,
+        // })
         .status(200)
         .json({msg: 'successfully logged out'});
 };
