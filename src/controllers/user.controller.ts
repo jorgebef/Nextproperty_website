@@ -31,7 +31,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         return res .status(200)
         // .header('Access-Control-Allow-Origin','*')
         .cookie('token', jwToken,{
-            // domain : 'localhost',
+            domain : '82.223.103.157',
             httpOnly : true,
             maxAge : 9999999
         })
