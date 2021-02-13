@@ -33,7 +33,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
         .cookie('token', jwToken,{
             domain : '82.223.103.157',
             httpOnly : true,
-            maxAge : 9999999
+            maxAge : 999999999999
         })
         .json({
             token: jwToken,
