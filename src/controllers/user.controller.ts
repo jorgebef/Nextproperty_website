@@ -33,6 +33,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
             .cookie('token', jwToken, {
                 domain: 'http://nextproperty-client.herokuapp.com',
                 httpOnly: false,
+                secure: false,
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
             })
             .json({
@@ -54,7 +55,7 @@ export const logInPost = async (req: Request, res: Response): Promise<Response> 
 export const authVerify = (req: Request, res: Response): boolean => {
     const token = req.cookies.token || '';
     console.log('cookies: ', req.cookies)
-    console.log('cookies: ', req.headers.cookie)
+    // console.log('cookies: ', req.headers.cookie)
     // const token = req.headers['authorization']?.split(' ')[1] || '';
     // console.log(req);
     console.log('this is the token: ' + token);

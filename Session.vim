@@ -38,7 +38,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 60
-normal! 019|
+normal! 018|
 wincmd w
 argglobal
 if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user.controller.ts | else | edit src/controllers/user.controller.ts | endif
@@ -50,7 +50,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 34
-normal! 027|
+normal! 0
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
