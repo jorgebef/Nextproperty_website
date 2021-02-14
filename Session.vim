@@ -8,7 +8,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +61 src/app.ts
+badd +1 src/app.ts
 badd +8 src/models/user.ts
 badd +9 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
@@ -45,12 +45,12 @@ if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 65 - ((28 * winheight(0) + 28) / 57)
+let s:l = 59 - ((46 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-65
-normal! 0
+59
+normal! 05|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 110 + 110) / 220)
