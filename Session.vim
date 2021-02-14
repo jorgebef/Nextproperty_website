@@ -45,11 +45,11 @@ if bufexists("src/controllers/user.controller.ts") | buffer src/controllers/user
 if &buftype ==# 'terminal'
   silent file src/controllers/user.controller.ts
 endif
-let s:l = 59 - ((46 * winheight(0) + 28) / 57)
+let s:l = 34 - ((21 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-59
+34
 normal! 05|
 wincmd w
 2wincmd w
