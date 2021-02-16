@@ -13,7 +13,7 @@ badd +5 src/routes/user.router.ts
 badd +7 src/middlewares/auth.middleware.ts
 badd +16 src/controllers/property.controller.ts
 badd +33 src/controllers/user.controller.ts
-badd +1 src/routes/property.router.ts
+badd +7 src/routes/property.router.ts
 badd +6 src/database.ts
 argglobal
 %argdel
@@ -32,12 +32,12 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-let s:l = 98 - ((29 * winheight(0) + 28) / 57)
+let s:l = 98 - ((41 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 98
-normal! 021|
+normal! 045|
 wincmd w
 argglobal
 if bufexists("src/database.ts") | buffer src/database.ts | else | edit src/database.ts | endif

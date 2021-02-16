@@ -93,15 +93,17 @@ declare module 'express-session' {
 // );
 
 // Routes ===========================
-app.use(propertyRouter);
-app.use(loginRouter);
+
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'path/to/your/index.html'), function (err) {
+    res.sendFile(path.join(__dirname, '../../client/dist/index.html'), function (err) {
         if (err) {
             res.status(500).send(err);
         }
     });
 });
+
+app.use(propertyRouter);
+app.use(loginRouter);
 
 // Start ============================
 // app.listen(Config.PORT, () => {
