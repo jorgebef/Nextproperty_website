@@ -2,6 +2,7 @@
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
+import path from 'path';
 // import exphbs from 'express-handlebars';
 // import path from 'path';
 import cors from 'cors';
@@ -39,8 +40,6 @@ app.set('port', Config.PORT);
 // );
 // app.set('view engine', '.hbs');
 
-
-
 // Middlewares ======================
 app.use(
     cors({
@@ -68,14 +67,13 @@ app.use(morgan('dev'));
 app.use(express.static('uploads'));
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
-
 
 declare module 'express-session' {
     export interface SessionData {
-        userId: {[key: string]: any};
-        loggedUser: {[key: string]: any};
+        userId: { [key: string]: any };
+        loggedUser: { [key: string]: any };
     }
 }
 
@@ -94,10 +92,16 @@ declare module 'express-session' {
 //     })
 // );
 
-
 // Routes ===========================
 app.use(propertyRouter);
 app.use(loginRouter);
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'path/to/your/index.html'), function (err) {
+        if (err) {
+            res.status(500).send(err);
+        }
+    });
+});
 
 // Start ============================
 // app.listen(Config.PORT, () => {
